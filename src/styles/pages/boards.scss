@@ -1,0 +1,62 @@
+.boards {
+  background-color: theme('colors.gray.10');
+  min-height: 100vh;
+  padding-top: calc(theme('spacing.16') + 68px);
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: theme('spacing.10');
+    margin-top: theme('spacing.10');
+
+    @include max-breakpoint(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include max-breakpoint(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__registration-form {
+    position: relative;
+
+    &__icon-close {
+      position: absolute;
+      right: -0.75rem;
+      top: -0.75rem;
+    }
+
+    &__picture {
+      border-radius: theme('borderRadius.md');
+      background-color: theme('colors.gray.20');
+      height: 78px;
+    }
+
+    input[type='text'] {
+      margin-top: theme('spacing.3');
+      margin-bottom: theme('spacing.6');
+    }
+
+    &__actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: theme('spacing.6');
+
+      button:first-child {
+        margin-right: 4px;
+      }
+    }
+  }
+}

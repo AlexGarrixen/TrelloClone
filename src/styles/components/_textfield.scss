@@ -1,0 +1,13 @@
+.textfield {
+  border: 1px solid theme('colors.gray.30');
+  border-radius: theme('borderRadius.lg');
+  box-shadow: theme('boxShadow.sm');
+  font-size: theme('fontSize.xs');
+  font-weight: 500;
+  padding: theme('spacing.2');
+  transition: 0.3s;
+
+  &:focus {
+    box-shadow: theme('boxShadow.md');
+  }
+}

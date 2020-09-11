@@ -1,0 +1,70 @@
+.button {
+  border: 1px solid transparent;
+  border-radius: theme('borderRadius.lg');
+  color: theme('colors.gray.30');
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: theme('fontSize.xs');
+  padding: theme('spacing.2') theme('spacing.3');
+
+  &--contained-default {
+    color: theme('colors.gray.40');
+    background-color: theme('colors.gray.20');
+    border-color: theme('colors.gray.20') !important;
+  }
+
+  &--text-default {
+    color: theme('colors.gray.40');
+  }
+
+  &--outlined-default {
+    border-color: theme('colors.gray.20') !important;
+    color: theme('colors.gray.40');
+  }
+
+  &--contained-primary {
+    background-color: theme('colors.primary');
+    color: #fff;
+  }
+
+  &--text-primary {
+    color: theme('colors.primary');
+  }
+
+  &--outlined-primary {
+    border-color: theme('colors.primary') !important;
+    color: theme('colors.primary');
+  }
+
+  &--contained-secondary {
+    background-color: theme('colors.red.10');
+    color: #fff;
+  }
+
+  &--text-secondary {
+    color: theme('colors.red.10');
+  }
+
+  &--outlined-secondary {
+    border-color: theme('colors.red.10') !important;
+    color: theme('colors.red.10');
+  }
+
+  &--start-icon {
+    & span:first-child {
+      margin-right: 12px;
+    }
+  }
+
+  &--end-icon {
+    & span:last-child {
+      margin-left: 12px;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

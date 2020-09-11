@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import './abstracts/mixins';
+@import './components/button';
+@import './components/icon-button';
+@import './components/badge';
+@import './components/textfield';
+@import './components/card';
+@import './components/header';
+@import './components/modal';
+@import './pages/boards';

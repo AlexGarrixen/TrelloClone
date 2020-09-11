@@ -1,0 +1,25 @@
+.card {
+  box-shadow: theme('boxShadow.md');
+  border-radius: theme('borderRadius.lg');
+  cursor: pointer;
+  background-color: #fff;
+  padding: theme('spacing.3');
+  transition: 0.3s theme('transitionTimingFunction.bezier-1');
+
+  &:hover {
+    transform: scale(1.025);
+  }
+
+  &__picture {
+    border-radius: theme('borderRadius.lg');
+    background-color: theme('colors.gray.20');
+    height: 130px;
+    max-width: 100%;
+  }
+
+  &__title {
+    font-weight: 500;
+    margin-top: theme('spacing.3');
+    line-height: 22px;
+  }
+}
