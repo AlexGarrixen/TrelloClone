@@ -5,7 +5,7 @@ const root = process.cwd();
 
 const jsRegex = /\.js$/;
 const scssRegex = /\.scss$/;
-const filesRegex = /\.(png|jpe?g|gif)$/;
+const filesRegex = /\.(png|jpe?g|gif|svg)$/;
 
 module.exports = {
   mode: 'development',

@@ -1,0 +1,31 @@
+.badge {
+  font-weight: 500;
+  font-size: theme('fontSize.sm');
+  border-radius: theme('borderRadius.full');
+  padding: 2px 9px;
+
+  &--green {
+    background-color: theme('colors.green.10');
+    color: theme('colors.green.20');
+  }
+
+  &--yellow {
+    background-color: theme('colors.yellow.10');
+    color: theme('colors.yellow.20');
+  }
+
+  &--orange {
+    background-color: theme('colors.orange.10');
+    color: theme('colors.orange.20');
+  }
+
+  &--purple {
+    background-color: theme('colors.purple.10');
+    color: theme('colors.purple.20');
+  }
+
+  &--blue {
+    background-color: theme('colors.blue.10');
+    color: theme('colors.blue.20');
+  }
+}

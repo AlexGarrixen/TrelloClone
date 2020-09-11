@@ -1,0 +1,5 @@
+@mixin max-breakpoint($screen) {
+  @media screen and (max-width: theme('screens.#{$screen}')) {
+    @content;
+  }
+}
