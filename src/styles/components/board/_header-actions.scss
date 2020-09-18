@@ -1,0 +1,21 @@
+.board-header-actions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  grid-area: header-actions;
+  margin-top: theme('spacing.6');
+  margin-bottom: theme('spacing.6');
+  padding: 0 28px;
+
+  &__board-title {
+    font-size: theme('fontSize.lg');
+    font-weight: 500;
+  }
+
+  &__board-title-separator {
+    width: 1px;
+    height: 35px;
+    background-color: theme('colors.gray.20');
+    margin: 0 20px;
+  }
+}

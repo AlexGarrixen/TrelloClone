@@ -1,0 +1,29 @@
+.board-list-card {
+  margin-bottom: theme('spacing.6');
+
+  &__grid-labels {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 12px;
+  }
+
+  &__footer {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: theme('spacing.6');
+  }
+
+  &__num-comments {
+    align-items: center;
+    display: flex;
+    color: theme('colors.gray.40');
+    font-size: theme('fontSize.xs');
+  }
+
+  &__num-attachments {
+    @extend .board-list-card__num-comments;
+    margin-left: 14px;
+  }
+}

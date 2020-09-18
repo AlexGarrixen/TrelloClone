@@ -24,6 +24,8 @@ const classes = {
   startIcon: 'button--start-icon',
   // class applied if startIcon=true
   endIcon: 'button--end-icon',
+  // class applied if  fullWidth=true
+  fullWidth: 'button--full-width',
 };
 
 export default classes;

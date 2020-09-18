@@ -14,6 +14,7 @@ module.exports = {
   output: {
     path: resolve(root, 'dist/assets'),
     filename: 'js/[name].js',
+    publicPath: '/',
   },
   devServer: {
     contentBase: resolve(root, 'dist'),

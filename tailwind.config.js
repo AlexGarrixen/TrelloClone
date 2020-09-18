@@ -51,6 +51,13 @@ module.exports = {
     transitionTimingFunction: {
       'bezier-1': 'cubic-bezier(0.73, 0.005, 0.22, 1)',
     },
+    fontSize: {
+      lg: '1.125rem',
+      base: '1rem',
+      sm: '0.875rem',
+      '2xs': '0.75rem',
+      xs: '0.625rem',
+    },
   },
   variants: {},
   plugins: [],

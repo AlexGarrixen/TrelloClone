@@ -1,0 +1,64 @@
+.board-popover-add-label {
+  width: 260px;
+  background-color: #fff;
+  padding: theme('spacing.4');
+  border-radius: theme('borderRadius.lg');
+  box-shadow: theme('boxShadow.md');
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: theme('spacing.3');
+  }
+
+  &__header-title {
+    font-size: theme('fontSize.2xs');
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  &__header-text-help {
+    font-size: theme('fontSize.2xs');
+    color: theme('colors.gray.40');
+  }
+
+  &__header-button-close {
+    padding: 0;
+  }
+
+  &__grid-colors {
+    margin-top: theme('spacing.3');
+    margin-bottom: theme('spacing.4');
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 8px;
+  }
+
+  &__color {
+    height: 27px;
+    background-color: theme('colors.gray.30');
+    border-radius: theme('borderRadius.lg');
+    cursor: pointer;
+
+    &.color--blue {
+      background-color: theme('colors.blue.20');
+    }
+
+    &.color--green {
+      background-color: theme('colors.green.20');
+    }
+
+    &.color--orange {
+      background-color: theme('colors.orange.20');
+    }
+
+    &.color--purple {
+      background-color: theme('colors.purple.20');
+    }
+
+    &.color--yellow {
+      background-color: theme('colors.yellow.20');
+    }
+  }
+}
