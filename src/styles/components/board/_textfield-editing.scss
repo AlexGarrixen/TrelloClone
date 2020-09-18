@@ -1,0 +1,25 @@
+.textfield-editing {
+  background-color: #fff;
+  border-radius: theme('borderRadius.lg');
+  box-shadow: theme('boxShadow.xs');
+  padding: theme('spacing.3');
+
+  textarea {
+    overflow-y: hidden;
+    resize: none;
+    font-size: theme('fontSize.2xs');
+  }
+
+  input[type='text'] {
+    font-size: theme('fontSize.2xs');
+  }
+
+  &__actions {
+    display: flex;
+    margin-top: theme('spacing.3');
+
+    & button:first-child {
+      margin-right: 4px;
+    }
+  }
+}

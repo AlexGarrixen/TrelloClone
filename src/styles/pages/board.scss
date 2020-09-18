@@ -1,0 +1,10 @@
+.board {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 68px auto 1fr;
+  grid-template-areas:
+    '.'
+    'header-actions'
+    'lists-grid';
+  overflow: hidden;
+}

@@ -1,0 +1,12 @@
+.board-lists-grid {
+  display: flex;
+  grid-gap: theme('spacing.8');
+  grid-area: lists-grid;
+  background-color: theme('colors.gray.10');
+  border-radius: theme('borderRadius.lg');
+  margin-left: theme('spacing.6');
+  margin-right: theme('spacing.6');
+  padding: 28px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}

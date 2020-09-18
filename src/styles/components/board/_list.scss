@@ -1,0 +1,47 @@
+.board-list {
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: theme('spacing.4');
+  }
+
+  &__body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 theme('spacing.2');
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: theme('fontSize.sm');
+  }
+
+  &__button-more > * {
+    pointer-events: none;
+  }
+}
+
+.card-drop-preview {
+  border: 1px dashed theme('colors.blue.20');
+  background-color: theme('colors.blue.10');
+  border-radius: theme('borderRadius.lg');
+  margin-bottom: theme('spacing.6');
+}
+
+.card-ghost {
+  transform: rotate(3deg);
+}
+
+.card-ghost-drop {
+  transform: rotate(0);
+}
+
+.smooth-dnd-draggable-wrapper {
+  padding: 0.3rem;
+}

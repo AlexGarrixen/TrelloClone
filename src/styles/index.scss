@@ -11,4 +11,15 @@
 @import './components/card';
 @import './components/header';
 @import './components/modal';
+@import './components/board/textfield-editing';
+@import './components/board/card-edit-form';
+@import './components/board/header-actions';
+@import './components/board/popover-delete-comment';
+@import './components/board/popover-add-label';
+@import './components/board/popover-list-options';
+@import './components/board/menu-sidebar';
+@import './components/board/list';
+@import './components/board/lists-grid';
+@import './components/board/card';
 @import './pages/boards';
+@import './pages/board';
