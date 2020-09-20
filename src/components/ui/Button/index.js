@@ -16,6 +16,7 @@ const Button = forwardRef(
       startIcon,
       endIcon,
       fullWidth = false,
+      type = 'button',
       ...other
     },
     ref
@@ -24,6 +25,7 @@ const Button = forwardRef(
       {...other}
       ref={ref}
       disabled={disabled}
+      type={type}
       className={clsx(
         classes.default,
         classes[`${variant}${capitalize(color)}`],
@@ -49,6 +51,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   startIcon: PropTypes.node,
   fullWidth: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 export default Button;

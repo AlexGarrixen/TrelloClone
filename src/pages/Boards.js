@@ -1,28 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import Container from '../components/layout/Container';
 import ButtonAdd from '../components/boards/ButtonAdd';
 import BoardsGrid from '../components/boards/BoardsGrid';
 import BoardRegisterForm from '../components/boards/BoardRegisterForm';
+import { setShowRegistrationModal } from '../redux/actions/boards';
+import useFetchBoards from '../components/hooks/useFetchBoards';
 
 Modal.setAppElement('#app');
 
 const Boards = () => {
-  const [showModal, set] = useState(false);
-  const handleToggleModal = () => set((state) => !state);
+  const dispatch = useDispatch();
+  const { registrationModalOpen } = useSelector(({ boards }) => boards);
+
+  useFetchBoards();
 
   return (
     <section className='boards'>
       <Container>
         <div className='boards__actions'>
           <h3>All Boards</h3>
-          <ButtonAdd onClick={handleToggleModal} />
+          <ButtonAdd onClick={() => dispatch(setShowRegistrationModal(true))} />
         </div>
         <BoardsGrid />
       </Container>
       <Modal
-        isOpen={showModal}
-        onRequestClose={handleToggleModal}
+        isOpen={registrationModalOpen}
+        onRequestClose={() => dispatch(setShowRegistrationModal(false))}
         className='modal modal--sm'
         overlayClassName='modal__overlay'
       >

@@ -1,0 +1,17 @@
+.progress-bar {
+  background-color: theme('colors.gray.20');
+  position: relative;
+  height: 3px;
+  width: 100%;
+  border-radius: theme('borderRadius.full');
+  overflow: hidden;
+
+  &__bar {
+    background-color: theme('colors.primary');
+    border-radius: theme('borderRadius.full');
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+}

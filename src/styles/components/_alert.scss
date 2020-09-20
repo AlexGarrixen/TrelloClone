@@ -1,0 +1,27 @@
+.alert {
+  padding: theme('spacing.3');
+  font-size: theme('fontSize.sm');
+  color: #fff;
+  display: flex;
+  align-items: center;
+
+  &__message {
+    margin-left: 10px;
+  }
+
+  &--success {
+    background-color: theme('colors.green.20');
+  }
+
+  &--info {
+    background-color: theme('colors.primary');
+  }
+
+  &--warning {
+    background-color: theme('colors.orange.20');
+  }
+
+  &--error {
+    background-color: theme('colors.red.10');
+  }
+}

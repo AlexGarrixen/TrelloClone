@@ -1,0 +1,20 @@
+.upload-file {
+  background-color: #fff;
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  &__filename {
+    font-weight: 500;
+    font-size: theme('fontSize.sm');
+  }
+
+  &__progress {
+    font-size: theme('fontSize.sm');
+    color: theme('colors.gray.40');
+  }
+}

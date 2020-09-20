@@ -10,6 +10,10 @@ import Trash from './Trash';
 import Comment from './Comment';
 import Th from './Th';
 import PaperClip from './PaperClip';
+import Check from './Check';
+import Info from './Info';
+import Warning from './Warning';
+import Error from './Error';
 
 const Icons = {
   Close,
@@ -23,6 +27,10 @@ const Icons = {
   Comment,
   Th,
   PaperClip,
+  Check,
+  Info,
+  Warning,
+  Error,
 };
 
 export default Icons;

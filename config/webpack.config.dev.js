@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DotEnvPlugin = require('dotenv-webpack');
 const { resolve } = require('path');
 const root = process.cwd();
 
@@ -65,6 +66,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: resolve(root, 'static/index.html'),
       filename: 'index.html',
+    }),
+    new DotEnvPlugin({
+      path: resolve(root, '.env'),
+      safe: true,
     }),
   ],
 };

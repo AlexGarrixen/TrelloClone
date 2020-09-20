@@ -13,6 +13,8 @@
   &__picture {
     border-radius: theme('borderRadius.lg');
     background-color: theme('colors.gray.20');
+    background-position: center;
+    background-size: cover;
     height: 130px;
     max-width: 100%;
   }
