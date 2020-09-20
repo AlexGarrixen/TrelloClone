@@ -2,11 +2,12 @@
   border: 1px solid transparent;
   border-radius: theme('borderRadius.lg');
   color: theme('colors.gray.30');
-  display: flex;
+  display: inline-flex;
   align-items: center;
   font-weight: 500;
   font-size: theme('fontSize.2xs');
   padding: theme('spacing.2') theme('spacing.3');
+  cursor: pointer;
 
   &--contained-default {
     color: theme('colors.gray.40');

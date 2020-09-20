@@ -12,6 +12,7 @@ const IconButton = forwardRef(
       className,
       color = 'default',
       variant = 'contained',
+      type = 'button',
       ...other
     },
     ref
@@ -19,6 +20,7 @@ const IconButton = forwardRef(
     <Component
       {...other}
       ref={ref}
+      type={type}
       className={clsx(
         classes.default,
         classes[`${variant}${capitalize(color)}`],
@@ -35,6 +37,7 @@ IconButton.propTypes = {
   component: PropTypes.element,
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   variant: PropTypes.oneOf(['text', 'contained', 'outlined']),
+  type: PropTypes.string,
 };
 
 export default IconButton;

@@ -41,6 +41,8 @@
     &__picture {
       border-radius: theme('borderRadius.md');
       background-color: theme('colors.gray.20');
+      background-size: cover;
+      background-position: center;
       height: 78px;
     }
 
