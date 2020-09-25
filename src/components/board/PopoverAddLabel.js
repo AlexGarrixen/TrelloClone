@@ -1,14 +1,27 @@
 import React, { forwardRef } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import OutsideClickHandler from 'react-outside-click-handler';
 import TextField from '../ui/TextField';
 import IconButton from '../ui/IconButton';
 import Button from '../ui/Button';
 import Icons from '../icons';
+import Badge from '../ui/Badge';
+import useCreateCardLabel from '../hooks/useCreateCardLabel';
+import useDeleteCardLabel from '../hooks/useDeleteCardLabel';
 
 const PopoverAddLabel = forwardRef(
   ({ onOutsideClick, onRequestClose, ...other }, ref) => {
     const colors = ['blue', 'green', 'orange', 'purple', 'yellow'];
+    const { cardSelected } = useSelector(({ board }) => board);
+    const {
+      form,
+      handleChange,
+      handleSubmit,
+      handleColorSelect,
+      isRequesting,
+    } = useCreateCardLabel('blue', () => onRequestClose());
+    const { handleDeleteLabel } = useDeleteCardLabel();
 
     return (
       <OutsideClickHandler onOutsideClick={onOutsideClick}>
@@ -28,16 +41,55 @@ const PopoverAddLabel = forwardRef(
               <Icons.Close />
             </IconButton>
           </div>
-          <TextField placeholder='label' fullWidth />
+          <TextField
+            autoComplete='off'
+            placeholder='label'
+            value={form.title}
+            name='title'
+            onChange={handleChange}
+            fullWidth
+          />
           <ul className='board-popover-add-label__grid-colors'>
             {colors.map((color) => (
               <li
                 key={color}
                 className={`board-popover-add-label__color color--${color}`}
-              />
+                onClick={handleColorSelect(color)}
+              >
+                {form.color === color && <Icons.Check size='sm' />}
+              </li>
             ))}
           </ul>
-          <Button color='primary'>Add</Button>
+          {cardSelected.labels.length > 0 && (
+            <div className='board-popover-add-label__avaliable-labels'>
+              <div className='board-popover-add-label__header-avaliable-labels'>
+                <Icons.Tag />
+                <h3 className='board-popover-add-label__header-title-avaliable-labels'>
+                  Avaliable
+                </h3>
+              </div>
+              <ul className='board-popover-add-label__grid-avaliable-labels'>
+                {cardSelected.labels.map(({ title, color, _id }) => (
+                  <Badge color={color} className='relative' key={_id}>
+                    {title}
+                    <div className='board-popover-add-label__button-delete-avaliable-label'>
+                      <Icons.Close
+                        size='xs'
+                        onClick={() => handleDeleteLabel(_id)}
+                      />
+                    </div>
+                  </Badge>
+                ))}
+              </ul>
+            </div>
+          )}
+          <Button
+            color='primary'
+            onClick={handleSubmit}
+            disabled={form.title.length < 1 || form.color.length < 1}
+          >
+            {isRequesting ? 'Adding...' : 'Add'}
+          </Button>
         </div>
       </OutsideClickHandler>
     );

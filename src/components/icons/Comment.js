@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import sizes from './sizes';
 
 const Comment = ({ size = 'sm', ...other }) => (
@@ -19,5 +20,9 @@ const Comment = ({ size = 'sm', ...other }) => (
     </svg>
   </span>
 );
+
+Comment.propTypes = {
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
+};
 
 export default Comment;

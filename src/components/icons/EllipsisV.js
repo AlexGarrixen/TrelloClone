@@ -23,7 +23,7 @@ const EllipsisV = ({ size = 'sm', ...other }) => (
 );
 
 EllipsisV.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default EllipsisV;

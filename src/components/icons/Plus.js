@@ -22,7 +22,7 @@ const Plus = ({ size = 'sm', ...other }) => (
 );
 
 Plus.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Plus;

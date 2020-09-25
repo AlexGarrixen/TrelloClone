@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import Icons from '../../icons';
 import Button from '../../ui/Button';
 import TextFieldEditing from '../TextFieldEditing';
+import useUpdateCardDescription from '../../hooks/useUpdateCardDescription';
+import useToggle from '../../hooks/useToggle';
 
 const Description = () => {
-  const [isModeEditDescription, setModeEditDescription] = useState(false);
-  const handleModeEditDescription = () =>
-    setModeEditDescription(!isModeEditDescription);
+  const { cardSelected } = useSelector(({ board }) => board);
+  const [isModeEditDescription, handleToogleMode] = useToggle();
+  const refDesc = useRef(null);
+
+  const {
+    form,
+    handleChange,
+    handleSubmit,
+    isRequesting,
+  } = useUpdateCardDescription(handleToogleMode(false));
+
+  const description = useMemo(
+    () =>
+      cardSelected.description &&
+      cardSelected.description.replace(/\n/g, '<br />'),
+    [cardSelected.description]
+  );
+
+  useEffect(() => {
+    if (refDesc.current) refDesc.current.innerHTML = description;
+  }, [refDesc, cardSelected.description, isModeEditDescription]);
 
   return (
     <div className='board-card-edit-form__description'>
@@ -17,7 +38,7 @@ const Description = () => {
         </p>
         <Button
           variant='outlined'
-          onClick={handleModeEditDescription}
+          onClick={handleToogleMode()}
           startIcon={
             !isModeEditDescription ? <Icons.Pencil /> : <Icons.Close />
           }
@@ -27,14 +48,19 @@ const Description = () => {
       </div>
       {isModeEditDescription ? (
         <TextFieldEditing
-          buttonText='Save'
-          onRequestCancel={handleModeEditDescription}
+          buttonText={isRequesting ? 'Updating...' : 'Save'}
+          onRequestCancel={handleToogleMode()}
+          onChange={handleChange}
+          onBlur={handleSubmit}
+          value={form.description}
+          name='description'
           textArea
         />
       ) : (
-        <p className='board-card-edit-form__description-content'>
-          Description Here
-        </p>
+        <p
+          ref={refDesc}
+          className='board-card-edit-form__description-content'
+        />
       )}
     </div>
   );

@@ -1,41 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {
+  requestUpdateListOnDrop,
+  requestUpdateCardOnDrop,
+} from '../../redux/actions/board';
 
 const useDragList = () => {
-  const [lists, set] = useState([
-    {
-      id: 123,
-      cards: [
-        {
-          id: 90,
-          title: 'Team 1',
-        },
-        {
-          id: 212,
-          title: 'Team 2',
-        },
-        {
-          id: 521,
-          title: 'Team 3',
-        },
-      ],
-    },
-    {
-      id: 456,
-      cards: [
-        {
-          id: 928,
-          title: 'Team 4',
-        },
-        {
-          id: 322,
-          title: 'Team 4',
-        },
-      ],
-    },
+  const { boardId } = useParams();
+  const dispatch = useDispatch();
+  const { prevRequests } = useSelector(({ board }) => board);
+
+  const boardLists = useMemo(() => prevRequests[boardId] || [], [
+    boardId,
+    prevRequests[boardId],
   ]);
 
+  const [lists, set] = useState(boardLists);
+
   const getCard = (cardIdx, listId) => {
-    const list = lists.find((list) => list.id === listId);
+    const list = lists.find((list) => list._id === listId);
     const card = list.cards[cardIdx];
     return card;
   };
@@ -43,10 +27,11 @@ const useDragList = () => {
   const handleOnDrop = (listId, dragResult) => {
     const { addedIndex, removedIndex, payload } = dragResult;
     const newLists = [...lists];
-    const listSelected = newLists.find(({ id }) => id === listId);
+    const listSelected = newLists.find(({ _id }) => _id === listId);
     let cards = listSelected.cards;
 
-    let cardToAdd = payload;
+    let cardToAdd = { ...payload };
+    cardToAdd.listId = listId;
 
     if (addedIndex === null && removedIndex === null) return;
 
@@ -59,7 +44,15 @@ const useDragList = () => {
     }
 
     set(newLists);
+    dispatch(requestUpdateListOnDrop(listId, cards));
+
+    if (payload.listId !== listId)
+      dispatch(requestUpdateCardOnDrop(payload._id, { listId }));
   };
+
+  useEffect(() => {
+    if (lists.length !== boardLists.length) set(prevRequests[boardId]);
+  }, [boardLists]);
 
   return {
     lists,

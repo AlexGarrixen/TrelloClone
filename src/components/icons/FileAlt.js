@@ -22,7 +22,7 @@ const FileAlt = ({ size = 'sm', ...other }) => (
 );
 
 FileAlt.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default FileAlt;

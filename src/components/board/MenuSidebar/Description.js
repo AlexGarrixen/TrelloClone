@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 import Icons from '../../icons';
 import TextFieldEditing from '../TextFieldEditing';
+import useToggle from '../../hooks/useToggle';
+import useUpdateBoardDescription from '../../hooks/useUpdateBoardDescription';
 
 const MenuDescription = () => {
-  const [isModeEdit, set] = useState(false);
-  const handleToggleModeEdit = () => set(!isModeEdit);
+  const [isModeEdit, handleToggleMode] = useToggle(false);
+  const { description } = useSelector(({ board }) => board);
+  const {
+    form,
+    handleChange,
+    handleSubmit,
+    isRequesting,
+  } = useUpdateBoardDescription(handleToggleMode(false));
 
   return (
     <div className='board-menu-sidebar__description'>
@@ -17,23 +26,25 @@ const MenuDescription = () => {
         <Button
           variant='outlined'
           startIcon={isModeEdit ? <Icons.Close /> : <Icons.Pencil />}
-          onClick={handleToggleModeEdit}
+          onClick={handleToggleMode()}
         >
           {isModeEdit ? 'Cancel' : 'Edit'}
         </Button>
       </div>
       {isModeEdit ? (
         <TextFieldEditing
-          buttonText='Save'
+          onChange={handleChange}
+          value={form.description}
+          name='description'
+          buttonText={isRequesting ? 'Saving...' : 'Save'}
           textArea
-          onRequestCancel={handleToggleModeEdit}
+          onRequestCancel={handleToggleMode()}
+          onRequestSuccess={handleSubmit}
+          disabledSuccessButton={form.description.length < 1}
         />
       ) : (
         <p className='board-menu-sidebar__description-content'>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
-          quidem rem ex eos, reiciendis dignissimos consectetur sit obcaecati,
-          veritatis necessitatibus dolorum repellendus? Distinctio earum sed
-          atque dolores saepe debitis sunt.
+          {description || 'Write...'}
         </p>
       )}
     </div>

@@ -22,7 +22,7 @@ const PaperClip = ({ size = 'sm', ...other }) => (
 );
 
 PaperClip.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default PaperClip;

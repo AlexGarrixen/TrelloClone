@@ -40,6 +40,10 @@
     background-color: theme('colors.gray.30');
     border-radius: theme('borderRadius.lg');
     cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &.color--blue {
       background-color: theme('colors.blue.20');
@@ -60,5 +64,43 @@
     &.color--yellow {
       background-color: theme('colors.yellow.20');
     }
+  }
+
+  &__avaliable-labels {
+    margin-bottom: theme('spacing.5');
+  }
+
+  &__header-avaliable-labels {
+    display: flex;
+    align-items: center;
+    color: theme('colors.gray.40');
+  }
+
+  &__header-title-avaliable-labels {
+    font-size: theme('fontSize.xs');
+    margin-left: 6px;
+  }
+
+  &__grid-avaliable-labels {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    grid-gap: 12px;
+  }
+
+  &__button-delete-avaliable-label {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: theme('colors.red.10');
+    border-radius: 50%;
+    bottom: 82%;
+    right: 2%;
+    transform: translate(50%, 50%);
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

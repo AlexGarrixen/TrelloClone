@@ -22,7 +22,7 @@ const Th = ({ size = 'sm', ...other }) => (
 );
 
 Th.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Th;

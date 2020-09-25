@@ -22,7 +22,7 @@ const Close = ({ size = 'sm', ...other }) => (
 );
 
 Close.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Close;

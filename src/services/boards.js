@@ -1,22 +1,23 @@
 import axios from 'axios';
 import env from '../../config/env';
+import getAxiosError from '../utils/getAxiosError';
 
 const { apiUrl } = env;
 
-export const getBoards = async () => {
+export const getBoards = async (boardId) => {
+  const params = {};
+
+  if (boardId) params.boardId = boardId;
+
   try {
-    const { data: boards } = await axios.get(`${apiUrl}/boards`);
+    const { data: boards } = await axios.get(`${apiUrl}/boards`, {
+      params,
+    });
 
     return boards;
   } catch (e) {
-    if (e.response) {
-      throw e.response.data.message;
-    }
-    if (e.request) {
-      throw 'something went wrong try later';
-    }
-
-    throw e.message;
+    const message = getAxiosError(e);
+    throw message;
   }
 };
 
@@ -29,13 +30,7 @@ export const createBoard = async ({ title, picture }) => {
 
     return boardCreated;
   } catch (e) {
-    if (e.response) {
-      throw e.response.data.message;
-    }
-    if (e.request) {
-      throw 'something went wrong try later';
-    }
-
-    throw e.message;
+    const message = getAxiosError(e);
+    throw message;
   }
 };

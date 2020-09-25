@@ -22,7 +22,7 @@ const Info = ({ size = 'sm', ...other }) => (
 );
 
 Info.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Info;

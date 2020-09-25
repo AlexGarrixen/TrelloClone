@@ -1,4 +1,8 @@
 const sizes = {
+  xs: {
+    width: 12,
+    height: 12,
+  },
   sm: {
     width: 15,
     height: 15,
