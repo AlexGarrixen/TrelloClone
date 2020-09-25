@@ -9,11 +9,14 @@ import calculateHeightTextArea from '../../utils/calculateHeightTextArea';
 const TextFieldEditing = ({
   buttonText,
   onChange,
+  onBlur,
   onRequestCancel,
   onRequestSuccess,
   placeholder,
   textArea = false,
   value,
+  name,
+  disabledSuccessButton = false,
 }) => (
   <div className='textfield-editing'>
     <TextField
@@ -21,6 +24,8 @@ const TextFieldEditing = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      onBlur={onBlur}
+      name={name}
       fullWidth
       onKeyUp={
         textArea ? ({ target }) => calculateHeightTextArea(target) : () => {}
@@ -35,6 +40,7 @@ const TextFieldEditing = ({
         color='primary'
         startIcon={<Icons.Plus />}
         onClick={onRequestSuccess}
+        disabled={disabledSuccessButton}
       >
         {buttonText}
       </Button>
@@ -45,11 +51,14 @@ const TextFieldEditing = ({
 TextFieldEditing.propTypes = {
   buttonText: PropTypes.string,
   onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   onRequestCancel: PropTypes.func,
   onRequestCancel: PropTypes.func,
   placeholder: PropTypes.string,
   textArea: PropTypes.bool,
   value: PropTypes.string,
+  name: PropTypes.string,
+  disabledSuccessButton: PropTypes.bool,
 };
 
 export default TextFieldEditing;

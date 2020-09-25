@@ -22,7 +22,7 @@ const Error = ({ size = 'sm', ...other }) => (
 );
 
 Error.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Error;

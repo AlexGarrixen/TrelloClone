@@ -22,7 +22,7 @@ const Check = ({ size = 'sm', ...other }) => (
 );
 
 Check.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Check;

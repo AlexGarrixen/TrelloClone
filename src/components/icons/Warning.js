@@ -22,7 +22,7 @@ const Warning = ({ size = 'sm', ...other }) => (
 );
 
 Warning.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Warning;

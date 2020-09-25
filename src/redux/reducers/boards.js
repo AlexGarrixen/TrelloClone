@@ -3,6 +3,7 @@ import {
   RECEIVE_ERROR,
   RECEIVE_BOARD_CREATED,
   SET_SHOW_REGISTRATION_MODAL,
+  UPDATE_BOARDS,
 } from '../actions/boards';
 
 const initialState = {
@@ -31,6 +32,11 @@ const boardsReducer = (state = initialState, action) => {
       return {
         ...state,
         data: [...state.data, action.board],
+      };
+    case UPDATE_BOARDS:
+      return {
+        ...state,
+        data: action.newBoards,
       };
     case RECEIVE_ERROR:
       return {

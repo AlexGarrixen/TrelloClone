@@ -1,6 +1,8 @@
+const isDev = process.env.NODE_ENV !== 'production';
+
 const env = {
-  isDev: process.env.NODE_ENV !== 'production',
-  apiUrl: process.env.API_URL,
+  isDev,
+  apiUrl: isDev ? process.env.API_URL_DEV : process.env.API_URL,
 };
 
 export default env;

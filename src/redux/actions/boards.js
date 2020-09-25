@@ -24,6 +24,12 @@ export const receiveBoardCreated = (board) => ({
   board,
 });
 
+export const UPDATE_BOARDS = 'UPDATE_BOARDS';
+export const updateBoards = (newBoards) => ({
+  type: UPDATE_BOARDS,
+  newBoards,
+});
+
 const shouldRequestBoards = (state) => {
   const {
     boards: { fetched },

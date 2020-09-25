@@ -22,7 +22,7 @@ const Tag = ({ size = 'sm', ...other }) => (
 );
 
 Tag.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Tag;

@@ -6,7 +6,7 @@ import Alert from '../ui/Alert';
 const BoardsGrid = () => {
   const { isFetching, data, error } = useSelector(({ boards }) => boards);
 
-  if (error) return <Alert>{error}</Alert>;
+  if (error) return <Alert severity='error'>{error}</Alert>;
   if (isFetching) return <p>Loading...</p>;
 
   return (

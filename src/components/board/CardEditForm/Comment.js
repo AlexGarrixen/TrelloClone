@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
+import dayjs from 'dayjs';
 import TextFieldEditing from '../TextFieldEditing';
 import PopoverDelete from '../PopoverDelete';
 import usePopper from '../../hooks/usePopper';
+import useUpdateCardComment from '../../hooks/useUpdateCardComment';
+import useDeleteCardComment from '../../hooks/useDeleteCardComment';
+import useToggle from '../../hooks/useToggle';
 
-const Comment = () => {
-  const [isModeEdit, setModeEdit] = useState(false);
-  const [showPopoverDelete, setShowPopoverDel] = useState(false);
-  const handleToogleModeEdit = () => setModeEdit(!isModeEdit);
+const Comment = ({ description, date, _id }) => {
+  const refDesc = useRef(null);
+  const [isModeEdit, handleToggleMode] = useToggle(false);
+  const [showPopoverDelete, handleTogglePopover] = useToggle(false);
+
+  const {
+    form,
+    handleChange,
+    handleSubmit,
+    isRequesting,
+  } = useUpdateCardComment(_id, description, handleToggleMode(false));
+
+  const {
+    handleDeleteComment,
+    isRequesting: isRequestingDel,
+  } = useDeleteCardComment(_id);
+
   const {
     setPopperElement,
     setReferenceElement,
@@ -14,20 +31,30 @@ const Comment = () => {
     attributes,
   } = usePopper();
 
+  const dateFormat = useMemo(() => dayjs(date).format('MMMM D, YYYY h:mm a'), [
+    date,
+  ]);
+
+  const desc = useMemo(
+    () => description && description.replace(/\n/g, '<br />'),
+    [description]
+  );
+
+  useEffect(() => {
+    if (refDesc.current) refDesc.current.innerHTML = desc;
+  }, [description, isModeEdit]);
+
   return (
     <>
       <div className='board-card-edit-form__comment'>
         <div className='board-card-edit-form__comment-header'>
-          <p>24 August at 20:30</p>
+          <p>{dateFormat}</p>
           <div className='board-card-edit-form__comment-header-actions'>
             {!isModeEdit && (
               <>
-                <p onClick={handleToogleModeEdit}>Edit</p>
+                <p onClick={handleToggleMode()}>Edit</p>
                 <span>-</span>
-                <p
-                  ref={setReferenceElement}
-                  onClick={() => setShowPopoverDel(!showPopoverDelete)}
-                >
+                <p ref={setReferenceElement} onClick={handleTogglePopover()}>
                   Delet
                 </p>
               </>
@@ -36,26 +63,31 @@ const Comment = () => {
         </div>
         {isModeEdit ? (
           <TextFieldEditing
-            onRequestCancel={handleToogleModeEdit}
-            buttonText='Save'
+            onRequestCancel={handleToggleMode()}
+            onRequestSuccess={handleSubmit}
+            onChange={handleChange}
+            value={form.comment}
+            name='comment'
+            buttonText={isRequesting ? 'Saving...' : 'Save'}
             textArea
           />
         ) : (
-          <p className='board-card-edit-form__comment-description'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem
-            alias nisi veniam blanditiis corrupti odio hic?
-          </p>
+          <p
+            className='board-card-edit-form__comment-description'
+            ref={refDesc}
+          />
         )}
       </div>
       {showPopoverDelete && (
         <PopoverDelete
           ref={setPopperElement}
           style={styles}
-          onOutsideClick={() => setShowPopoverDel(false)}
-          onRequestClose={() => setShowPopoverDel(false)}
+          onOutsideClick={handleTogglePopover(false)}
+          onRequestClose={handleTogglePopover()}
+          onRequestConfirm={handleDeleteComment}
           headerTitle='Do you want to delete the comment?'
           textWarning='Deleting a comment is permanent. The operation cannot be undone.'
-          buttonText='Delete comment'
+          buttonText={isRequestingDel ? 'Deleting...' : 'Delete comment'}
           {...attributes}
         />
       )}

@@ -22,7 +22,7 @@ const Pencil = ({ size = 'sm', ...other }) => (
 );
 
 Pencil.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
 };
 
 export default Pencil;

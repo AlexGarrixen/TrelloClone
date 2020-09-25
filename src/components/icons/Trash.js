@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import sizes from './sizes';
 
 const Trash = ({ size = 'sm', ...other }) => (
@@ -8,7 +9,7 @@ const Trash = ({ size = 'sm', ...other }) => (
       focusable='false'
       data-prefix='fas'
       data-icon='trash-alt'
-      class='svg-inline--fa fa-trash-alt fa-w-14'
+      className='svg-inline--fa fa-trash-alt fa-w-14'
       role='img'
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 448 512'
@@ -22,5 +23,9 @@ const Trash = ({ size = 'sm', ...other }) => (
     </svg>
   </span>
 );
+
+Trash.propTypes = {
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
+};
 
 export default Trash;

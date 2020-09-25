@@ -1,25 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../ui/Button';
 import Icons from '../icons';
 import TextFieldEditing from './TextFieldEditing';
+import useCreateBoardList from '../hooks/useCreateBoardList';
+import useToggle from '../hooks/useToggle';
 
 const ButtonAddList = () => {
-  const [openFormRegister, set] = useState(false);
-  const handleOpenToggle = () => set(!openFormRegister);
+  const [showFormRegister, handleToggle] = useToggle(false);
+  const { form, handleChange, handleSubmit, isRequesting } = useCreateBoardList(
+    handleToggle(false)
+  );
 
   return (
     <div style={{ width: 243 }} className='flex-shrink-0'>
-      {openFormRegister ? (
+      {showFormRegister ? (
         <TextFieldEditing
-          onRequestCancel={handleOpenToggle}
+          onRequestCancel={handleToggle()}
+          onRequestSuccess={handleSubmit}
           placeholder='Add list title'
-          buttonText='Add list'
+          buttonText={isRequesting ? 'Adding...' : 'Add list'}
+          onChange={handleChange}
+          value={form.title}
+          name='title'
+          disabledSuccessButton={form.title.length < 1}
         />
       ) : (
         <Button
           color='primary'
           endIcon={<Icons.Plus />}
-          onClick={handleOpenToggle}
+          onClick={handleToggle()}
           fullWidth
         >
           Add another list

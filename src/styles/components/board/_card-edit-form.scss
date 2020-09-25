@@ -45,7 +45,7 @@
 
   &__body {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 120px;
     grid-template-areas: 'content-main actions';
     margin-top: theme('spacing.6');
     grid-gap: 1rem;
@@ -109,6 +109,8 @@
     width: 80px;
     height: 53px;
     background-color: theme('colors.gray.30');
+    background-position: center;
+    background-size: cover;
     border-radius: theme('borderRadius.lg');
     margin-right: 13px;
   }
@@ -133,7 +135,7 @@
       font-size: theme('fontSize.xs');
     }
 
-    button:first-child {
+    button:not(:last-child) {
       margin-right: 8px;
     }
   }

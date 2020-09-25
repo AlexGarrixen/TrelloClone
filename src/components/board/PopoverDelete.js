@@ -10,6 +10,7 @@ const PopoverDelete = forwardRef(
     {
       onOutsideClick,
       onRequestClose,
+      onRequestConfirm,
       headerTitle,
       textWarning,
       buttonText,
@@ -35,7 +36,7 @@ const PopoverDelete = forwardRef(
           <p className='board-popover-delete-comment__text-warning'>
             {textWarning}
           </p>
-          <Button className='mt-4' color='secondary'>
+          <Button className='mt-4' color='secondary' onClick={onRequestConfirm}>
             {buttonText}
           </Button>
         </div>
