@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   future: {
     purgeLayersByDefault: true,
@@ -60,5 +62,55 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    plugin(({ addUtilities }) => {
+      const newUtilties = {
+        '.col-1': {
+          'max-width': '8.333333333333333%',
+          'flex-basis': '8.333333333333333%',
+          'flex-grow': 0,
+        },
+        '.col-2': {
+          'max-width': '16.66666666666667%',
+          'flex-basis': '16.66666666666667%',
+          'flex-grow': 0,
+        },
+        '.col-3': { 'max-width': '25%', 'flex-basis': '25%', 'flex-grow': 0 },
+        '.col-4': {
+          'max-width': '33.33333333333333%',
+          'flex-basis': '33.33333333333333%',
+          'flex-grow': 0,
+        },
+        '.col-5': {
+          'max-width': '41.66666666666667%',
+          'flex-basis': '41.66666666666667%',
+          'flex-grow': 0,
+        },
+        '.col-6': { 'max-width': '50%', 'flex-basis': '50%', 'flex-grow': 0 },
+        '.col-7': {
+          'max-width': '58.33333333333333%',
+          'flex-basis': '58.33333333333333%',
+          'flex-grow': 0,
+        },
+        '.col-8': {
+          'max-width': '66.66666666666667%',
+          'flex-basis': '66.66666666666667%',
+          'flex-grow': 0,
+        },
+        '.col-9': { 'max-width': '75%', 'flex-basis': '75%', 'flex-grow': 0 },
+        '.col-10': {
+          'max-width': '83.33333333333333%',
+          'flex-basis': '83.33333333333333%',
+          'flex-grow': 0,
+        },
+        '.col-11': {
+          'max-width': '91.66666666666667%',
+          'flex-basis': '91.66666666666667%',
+          'flex-grow': 0,
+        },
+      };
+
+      addUtilities(newUtilties, ['responsive']);
+    }),
+  ],
 };

@@ -1,0 +1,70 @@
+@keyframes animationSkeleton {
+  0% {
+    transform: translateX(20%);
+  }
+  100% {
+    transform: translateX(80%);
+  }
+}
+
+.skeleton {
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &__picture {
+    background-color: theme('colors.gray.30');
+    min-height: 130px;
+  }
+
+  &__row {
+    display: flex;
+  }
+
+  &__col {
+    background-color: theme('colors.gray.30');
+    min-height: 12px;
+  }
+
+  &.space-3 {
+    padding-left: theme('spacing.3');
+    padding-right: theme('spacing.3');
+    padding-top: theme('spacing.3');
+
+    & > * {
+      margin-bottom: theme('spacing.3');
+    }
+
+    .skeleton__row {
+      margin-left: calc(theme('spacing.3') * -1);
+      margin-right: calc(theme('spacing.3') * -1);
+    }
+
+    .skeleton__row > * {
+      margin-right: theme('spacing.3');
+      margin-left: theme('spacing.3');
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    width: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.35) 50%,
+        rgba(255, 255, 255, 0) 55%
+      )
+      50% 50%;
+    z-index: 1;
+    animation: animationSkeleton 1.2s theme('transitionTimingFunction.bezier-1')
+      infinite;
+  }
+}
