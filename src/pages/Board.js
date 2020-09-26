@@ -5,6 +5,7 @@ import Alert from '../components/ui/Alert';
 import CardEditForm from '../components/board/CardEditForm';
 import HeaderActions from '../components/board/HeaderActions';
 import MenuSidebar from '../components/board/MenuSidebar/index';
+import SkeletonBoardLists from '../components/layout/SkeletonBoardLists';
 import useFetchBoard from '../components/hooks/useFetchBoard';
 import useEditCardModal from '../components/hooks/useEditCardModal';
 import useBoardSidebarMenu from '../components/hooks/useBoardSidebarMenu';
@@ -25,7 +26,7 @@ const Board = () => {
       </Alert>
     );
 
-  if (isFetching) return <p className='mt-24'>...LOADING</p>;
+  if (isFetching) return <SkeletonBoardLists />;
 
   return (
     <section className='board'>
