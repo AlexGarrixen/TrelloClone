@@ -46,7 +46,9 @@ const Attachment = ({ originalname, path, publicId, date }) => {
         <p className='board-card-edit-form__attachment-date'>
           Add {dateFormated}
         </p>
-        <p className='board-card-edit-form__attachment-name'>{originalname}</p>
+        <p className='board-card-edit-form__attachment-name truncate'>
+          {originalname}
+        </p>
         <div className='board-card-edit-form__attachment-actions'>
           <Button
             variant='outlined'

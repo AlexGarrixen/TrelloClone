@@ -11,6 +11,7 @@
   &__filename {
     font-weight: 500;
     font-size: theme('fontSize.sm');
+    max-width: 200px;
   }
 
   &__progress {
