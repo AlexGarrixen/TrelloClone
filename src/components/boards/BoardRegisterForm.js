@@ -47,7 +47,7 @@ const BoardRegisterForm = () => {
       </IconButton>
       <div
         className='boards__registration-form__picture'
-        style={{ backgroundImage: `url(${form.picture})` }}
+        style={{ backgroundImage: `url(${form.picture.path})` }}
       />
       {isUploading && (
         <UploadFile

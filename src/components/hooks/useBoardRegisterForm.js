@@ -16,10 +16,11 @@ const useBoardRegisterForm = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [requestingDelAttachment, setRequestingDelAttachment] = useState(false);
+
   const { form, handleChange, handleSubmit, setForm } = useForm({
     initialState: {
       title: '',
-      picture: '',
+      picture: { path: '', publicId: '' },
     },
     onSubmit: async (values) => {
       try {
@@ -31,6 +32,7 @@ const useBoardRegisterForm = () => {
       }
     },
   });
+
   const {
     data: attachment,
     filename,
@@ -44,7 +46,7 @@ const useBoardRegisterForm = () => {
     const { files } = target;
 
     if (files.length) {
-      if (form.picture) await deleteAttachment(attachment.id);
+      if (form.picture.path) await deleteAttachment(attachment.id);
       requestUploadFile(files[0]);
     }
   };
@@ -59,7 +61,11 @@ const useBoardRegisterForm = () => {
   };
 
   useEffect(() => {
-    if (attachment !== null) setForm({ ...form, picture: attachment.path });
+    if (attachment !== null)
+      setForm({
+        ...form,
+        picture: { path: attachment.path, publicId: attachment.id },
+      });
   }, [attachment]);
 
   useEffect(() => {
