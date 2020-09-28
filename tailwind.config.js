@@ -1,11 +1,12 @@
 const plugin = require('tailwindcss/plugin');
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   future: {
     purgeLayersByDefault: true,
   },
   purge: {
-    enabled: true,
+    enabled: isProd,
     layers: ['utilities', 'components', 'base'],
     content: ['./src/**/*.html', './src/**/*.js'],
   },
