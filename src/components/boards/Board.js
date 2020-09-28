@@ -8,13 +8,16 @@ const Board = ({ title, picture, _id }) => (
     component={Link}
     to={`/board/${_id}/${title}`}
     title={title}
-    picture={picture}
+    picture={picture.path}
   />
 );
 
 Board.propTypes = {
   title: PropTypes.string,
-  picture: PropTypes.string,
+  picture: PropTypes.shape({
+    path: PropTypes.string,
+    publicId: PropTypes.string,
+  }),
   _id: PropTypes.string.isRequired,
 };
 

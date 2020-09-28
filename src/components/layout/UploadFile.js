@@ -16,7 +16,7 @@ const UploadFile = ({ filename, className, percentage }) => (
 UploadFile.propTypes = {
   filename: PropTypes.string,
   className: PropTypes.string,
-  percentage: PropTypes.string,
+  percentage: PropTypes.number,
 };
 
 export default UploadFile;
