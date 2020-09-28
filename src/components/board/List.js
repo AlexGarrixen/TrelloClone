@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'react-smooth-dnd';
 import Icons from '../icons';
@@ -8,7 +8,14 @@ import PopoverListOptions from './PopoverListOptions';
 import usePopper from '../hooks/usePopper';
 import useToggle from '../hooks/useToggle';
 
-const List = ({ children, onDrop, getChildPayload, title, id }) => {
+const List = ({
+  children,
+  onDrop,
+  getChildPayload,
+  title,
+  id,
+  isMobileMatchMedia,
+}) => {
   const [showPopoverOptions, handleToggleOptions] = useToggle(false);
   const lengthChildrens = useMemo(() => children.length, [children]);
   const buttonMore = useRef(null);
@@ -19,6 +26,14 @@ const List = ({ children, onDrop, getChildPayload, title, id }) => {
     styles,
     attributes,
   } = usePopper();
+
+  useEffect(
+    () =>
+      isMobileMatchMedia
+        ? document.body.classList.add('smooth-dnd-mobile')
+        : document.body.classList.remove('smooth-dnd-mobile'),
+    [isMobileMatchMedia]
+  );
 
   return (
     <article className='board-list'>
@@ -43,6 +58,7 @@ const List = ({ children, onDrop, getChildPayload, title, id }) => {
           dropPlaceholderAnimationDuration={200}
           onDrop={onDrop}
           getChildPayload={getChildPayload}
+          dragBeginDelay={isMobileMatchMedia ? 400 : 0}
           dropPlaceholder={{
             animationDuration: 150,
             showOnTop: true,
@@ -76,6 +92,7 @@ List.propTypes = {
   getChildPayload: PropTypes.func,
   title: PropTypes.string,
   id: PropTypes.string.isRequired,
+  isMobileMatchMedia: PropTypes.bool,
 };
 
 export default List;
