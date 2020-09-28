@@ -8,7 +8,7 @@ const Board = ({ title, picture, _id }) => (
     component={Link}
     to={`/board/${_id}/${title}`}
     title={title}
-    picture={picture}
+    picture={picture.path}
   />
 );
 
