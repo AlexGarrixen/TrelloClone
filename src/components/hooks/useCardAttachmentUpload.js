@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useUploadAttachment from './useUploadAttachment';
 import { getAttachmentUploaded } from '../../redux/actions/board';
-import env from '../../../config/env';
+import { apiUrl } from '../../services/apiUrl';
 
 const useCardAttachmentUpload = () => {
   const { cardSelected } = useSelector(({ board }) => board);
   const dispatch = useDispatch();
-  const { apiUrl } = env;
 
   const {
     isUploading,

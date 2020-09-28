@@ -1,8 +1,6 @@
 import axios from 'axios';
-import env from '../../config/env';
 import getAxiosError from '../utils/getAxiosError';
-
-const { apiUrl } = env;
+import { apiUrl } from './apiUrl';
 
 export const deleteAttachment = async (attachmentId) => {
   try {
