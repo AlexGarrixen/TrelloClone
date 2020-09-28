@@ -45,3 +45,8 @@
 .smooth-dnd-draggable-wrapper {
   padding: 0.3rem;
 }
+
+//override property touch action on none, on mobile devices to scroll
+.smooth-dnd-disable-touch-action.smooth-dnd-mobile * {
+  touch-action: initial !important;
+}

@@ -3,10 +3,12 @@ import List from './List';
 import Card from './Card';
 import ButtonAddList from './ButtonAddList';
 import useDragList from '../hooks/useDragList';
+import useMatchMedia from '../hooks/useMatchMedia';
 import { isArray } from '../../utils/typeOf';
 
 const ListsGrid = () => {
   const { lists, handleOnDrop, getCard } = useDragList(lists);
+  const { isMatchMedia } = useMatchMedia('(max-width: 768px)');
 
   return (
     <ul className='board-lists-grid'>
@@ -18,6 +20,7 @@ const ListsGrid = () => {
             getChildPayload={(idx) => getCard(idx, _id)}
             title={title}
             id={_id}
+            isMobileMatchMedia={isMatchMedia}
           >
             {isArray(cards) &&
               cards.map((props) => <Card key={props._id} {...props} />)}
