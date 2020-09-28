@@ -2,7 +2,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssPlugin = require('mini-css-extract-plugin');
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const DotEnvPlugin = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const cssnano = require('cssnano');
 const { resolve } = require('path');
@@ -83,10 +82,6 @@ module.exports = {
       assetNameRegExp: /\.css$/g,
       cssProcessor: cssnano,
       cssProcessorOptions: { discardComments: { removeAll: true } },
-    }),
-    new DotEnvPlugin({
-      path: resolve(root, '.env'),
-      safe: true,
     }),
   ],
 };

@@ -8,9 +8,7 @@ import {
   setShowRegistrationModal,
   receiveBoardCreated,
 } from '../../redux/actions/boards';
-import env from '../../../config/env';
-
-const { apiUrl } = env;
+import { apiUrl } from '../../services/apiUrl';
 
 const useBoardRegisterForm = () => {
   const dispatch = useDispatch();
