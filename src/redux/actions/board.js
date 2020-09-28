@@ -331,7 +331,7 @@ export const requestUpdateListOnDrop = (listId, cards) => async (
     const newPrevRequests = { ...prevRequests };
     const lists = newPrevRequests[boardId];
     const listIdx = lists.findIndex((list) => list._id === listId);
-    board.lists[listIdx].cards = cards;
+    lists[listIdx].cards = cards;
 
     dispatch(updatePrevRequests(newPrevRequests));
   } catch (e) {

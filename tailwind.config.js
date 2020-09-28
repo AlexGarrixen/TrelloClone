@@ -5,8 +5,9 @@ module.exports = {
     purgeLayersByDefault: true,
   },
   purge: {
-    layers: ['utilities'],
-    content: [],
+    enabled: true,
+    layers: ['utilities', 'components', 'base'],
+    content: ['./src/**/*.html', './src/**/*.js'],
   },
   theme: {
     fontFamily: {
