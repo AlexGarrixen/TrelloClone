@@ -403,12 +403,20 @@ export const requestUpdateCardComment = (
   }
 };
 
-export const requestDeleteList = (listId) => async (dispatch, getState) => {
+export const requestDeleteList = (
+  listId,
+  options = {
+    onRequest: noop,
+    onSuccessRequest: noop,
+  }
+) => async (dispatch, getState) => {
   const { board } = getState();
   const { boardId, prevRequests } = board;
 
   try {
+    isFn(options.onRequest) && options.onRequest();
     await deleteList(listId);
+    isFn(options.onSuccessRequest) && options.onSuccessRequest();
     const newPrevRequests = { ...prevRequests };
     const currentLists = newPrevRequests[boardId];
     const newLists = currentLists.filter((list) => list._id !== listId);
