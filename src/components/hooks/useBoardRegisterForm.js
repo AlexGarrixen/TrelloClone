@@ -23,6 +23,7 @@ const useBoardRegisterForm = () => {
     onSubmit: async (values) => {
       try {
         const boardCreated = await createBoard(values);
+        setForm({ title: '', picture: { path: '', publicId: '' } });
         dispatch(receiveBoardCreated(boardCreated));
         dispatch(setShowRegistrationModal(false));
       } catch (e) {
@@ -50,7 +51,7 @@ const useBoardRegisterForm = () => {
   };
 
   const handleCancel = async () => {
-    if (form.picture) {
+    if (form.picture.path) {
       setRequestingDelAttachment(true);
       await deleteAttachment(attachment.id);
       setRequestingDelAttachment(false);
