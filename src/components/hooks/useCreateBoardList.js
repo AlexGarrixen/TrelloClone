@@ -9,7 +9,7 @@ const useCreateBoardList = (onSuccess) => {
   const { boardId } = useParams();
   const dispatch = useDispatch();
 
-  const { form, handleChange, handleSubmit } = useForm({
+  const { form, handleChange, handleSubmit, setForm } = useForm({
     initialState: { title: '' },
     onSubmit: ({ title }) =>
       title.length > 1 &&
@@ -21,6 +21,7 @@ const useCreateBoardList = (onSuccess) => {
             onRequest: () => setIsRequesting(true),
             onSuccessRequest: () => {
               setIsRequesting(false);
+              setForm({ title: '' });
               onSuccess();
             },
           }
