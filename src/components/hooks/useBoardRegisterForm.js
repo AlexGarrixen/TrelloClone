@@ -14,6 +14,7 @@ const useBoardRegisterForm = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [requestingDelAttachment, setRequestingDelAttachment] = useState(false);
+  const [requestingCreate, setRequestingCreate] = useState(false);
 
   const { form, handleChange, handleSubmit, setForm } = useForm({
     initialState: {
@@ -22,8 +23,10 @@ const useBoardRegisterForm = () => {
     },
     onSubmit: async (values) => {
       try {
+        setRequestingCreate(true);
         const boardCreated = await createBoard(values);
         setForm({ title: '', picture: { path: '', publicId: '' } });
+        setRequestingCreate(false);
         dispatch(receiveBoardCreated(boardCreated));
         dispatch(setShowRegistrationModal(false));
       } catch (e) {
@@ -79,6 +82,7 @@ const useBoardRegisterForm = () => {
     handleChangeFile,
     handleCancel,
     requestingDelAttachment,
+    requestingCreate,
     uploadAttachment: {
       filename,
       isUploading,
