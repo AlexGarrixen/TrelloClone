@@ -37,7 +37,12 @@ const boardReducer = (state = initialState, action) => {
         description: action.description,
         prevRequests: {
           ...state.prevRequests,
-          [action.boardId]: action.lists,
+          [action.boardId]: {
+            boardId: action.boardId,
+            title: action.title,
+            description: action.description,
+            lists: action.lists,
+          },
         },
       };
     case RECEIVE_UPDATE_BOARD:

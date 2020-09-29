@@ -7,7 +7,7 @@ import useMatchMedia from '../hooks/useMatchMedia';
 import { isArray } from '../../utils/typeOf';
 
 const ListsGrid = () => {
-  const { lists, handleOnDrop, getCard } = useDragList(lists);
+  const { lists, handleOnDrop, getCard } = useDragList();
   const { isMatchMedia } = useMatchMedia('(max-width: 768px)');
 
   return (
