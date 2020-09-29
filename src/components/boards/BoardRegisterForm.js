@@ -1,6 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { setShowRegistrationModal } from '../../redux/actions/boards';
 import TextField from '../ui/TextField';
 import Button from '../ui/Button';
 import IconButton from '../ui/IconButton';
@@ -10,7 +8,6 @@ import UploadFile from '../layout/UploadFile';
 import useBoardRegisterForm from '../hooks/useBoardRegisterForm';
 
 const BoardRegisterForm = () => {
-  const dispatch = useDispatch();
   const {
     errors,
     form,
@@ -41,7 +38,7 @@ const BoardRegisterForm = () => {
       <IconButton
         color='primary'
         className='boards__registration-form__icon-close'
-        onClick={() => dispatch(setShowRegistrationModal(false))}
+        onClick={handleCancel}
       >
         <Icons.Close />
       </IconButton>
