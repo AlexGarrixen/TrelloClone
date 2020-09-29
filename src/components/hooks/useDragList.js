@@ -11,9 +11,9 @@ const useDragList = () => {
   const dispatch = useDispatch();
   const { prevRequests } = useSelector(({ board }) => board);
 
-  const boardLists = useMemo(() => prevRequests[boardId] || [], [
+  const boardLists = useMemo(() => prevRequests[boardId]?.lists || [], [
     boardId,
-    prevRequests[boardId],
+    prevRequests[boardId]?.lists,
   ]);
 
   const [lists, set] = useState(boardLists);
@@ -51,7 +51,7 @@ const useDragList = () => {
   };
 
   useEffect(() => {
-    if (lists.length !== boardLists.length) set(prevRequests[boardId]);
+    if (lists.length !== boardLists.length) set(prevRequests[boardId].lists);
   }, [boardLists]);
 
   return {

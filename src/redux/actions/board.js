@@ -81,9 +81,10 @@ export const clearBoardError = () => ({
 });
 
 export const RECEIVE_UPDATE_BOARD = 'RECEIVE_UPDATE_BOARD';
-export const receiveUpdateBoard = ({ title, description }) => ({
+export const receiveUpdateBoard = ({ boardId, title, description }) => ({
   type: RECEIVE_UPDATE_BOARD,
   payload: {
+    ...(boardId ? { boardId } : {}),
     ...(title ? { title } : {}),
     ...(description ? { description } : {}),
   },
@@ -152,8 +153,8 @@ export const requestCreateList = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const currentLists = newPrevRequests[boardId];
-    newPrevRequests[boardId] = [...currentLists, listCreated];
+    const currentLists = newPrevRequests[boardId].lists;
+    newPrevRequests[boardId].lists = [...currentLists, listCreated];
 
     dispatch(updatePrevRequests(newPrevRequests));
   } catch (e) {
@@ -175,7 +176,7 @@ export const requestCreateCard = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === listId);
     list.cards = [...list.cards, cardCreated];
 
@@ -197,7 +198,7 @@ export const requestCreateCardComment = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.comments = newCard.comments;
@@ -221,7 +222,7 @@ export const requestCreateLabel = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.labels = newCard.labels;
@@ -279,7 +280,7 @@ export const requestUpdateCardTitle = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.title = newCard.title;
@@ -306,7 +307,7 @@ export const requestUpdateDescription = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.description = newCard.description;
@@ -329,7 +330,7 @@ export const requestUpdateListOnDrop = (listId, cards) => async (
   try {
     await updateCardsList(listId, cardsId);
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const listIdx = lists.findIndex((list) => list._id === listId);
     lists[listIdx].cards = cards;
 
@@ -362,7 +363,7 @@ export const requestUpdateCardPicture = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = prevRequests[boardId];
+    const lists = prevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.picture = newCard.picture;
@@ -391,7 +392,7 @@ export const requestUpdateCardComment = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.comments = newCard.comments;
@@ -418,9 +419,9 @@ export const requestDeleteList = (
     await deleteList(listId);
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
     const newPrevRequests = { ...prevRequests };
-    const currentLists = newPrevRequests[boardId];
+    const currentLists = newPrevRequests[boardId].lists;
     const newLists = currentLists.filter((list) => list._id !== listId);
-    newPrevRequests[boardId] = newLists;
+    newPrevRequests[boardId].lists = newLists;
 
     dispatch(updatePrevRequests(newPrevRequests));
   } catch (e) {
@@ -440,7 +441,7 @@ export const requestDeleteComment = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.comments = newCard.comments;
@@ -459,7 +460,7 @@ export const requestDeleteLabel = (labelId) => async (dispatch, getState) => {
     const { newCard } = await deleteCardLabel(cardSelected._id, labelId);
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.labels = newCard.labels;
@@ -482,7 +483,7 @@ export const requestDeleteCard = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const newCards = list.cards.filter((card) => card._id !== cardSelected._id);
     list.cards = newCards;
@@ -503,7 +504,7 @@ export const getAttachmentUploaded = ({ path, publicId }, newAttachments) => (
   const { prevRequests, boardId, cardSelected } = state.board;
 
   const newPrevRequests = { ...prevRequests };
-  const lists = newPrevRequests[boardId];
+  const lists = newPrevRequests[boardId].lists;
   const list = lists.find((list) => list._id === cardSelected.listId);
   const card = list.cards.find((card) => card._id === cardSelected._id);
 
@@ -540,7 +541,7 @@ export const requestDeleteAttachment = (
     isFn(options.onSuccessRequest) && options.onSuccessRequest();
 
     const newPrevRequests = { ...prevRequests };
-    const lists = newPrevRequests[boardId];
+    const lists = newPrevRequests[boardId].lists;
     const list = lists.find((list) => list._id === cardSelected.listId);
     const card = list.cards.find((card) => card._id === cardSelected._id);
     card.attachments = newCard.attachments;
