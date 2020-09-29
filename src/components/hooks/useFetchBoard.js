@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBoardLists } from '../../redux/actions/board';
+import { fetchBoardLists, receiveUpdateBoard } from '../../redux/actions/board';
 
 const useFetchBoardLists = () => {
   const { params } = useRouteMatch();
@@ -14,6 +14,14 @@ const useFetchBoardLists = () => {
   useEffect(() => {
     if (!board)
       dispatch(fetchBoardLists(params.boardId, handleOnSuccessRequest));
+    else
+      dispatch(
+        receiveUpdateBoard({
+          boardId: board.boardId,
+          title: board.title,
+          description: board.description,
+        })
+      );
   }, []);
 
   return {
