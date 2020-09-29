@@ -16,6 +16,7 @@ const BoardRegisterForm = () => {
     handleChangeFile,
     handleCancel,
     requestingDelAttachment,
+    requestingCreate,
     uploadAttachment,
   } = useBoardRegisterForm();
 
@@ -83,7 +84,7 @@ const BoardRegisterForm = () => {
           startIcon={<Icons.Plus />}
           type='submit'
         >
-          Create
+          {requestingCreate ? 'Creating...' : 'Create'}
         </Button>
       </div>
     </form>
