@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Badge /> Render Success 1`] = `
+<span
+  className="badge badge--blue"
+>
+  badge
+</span>
+`;

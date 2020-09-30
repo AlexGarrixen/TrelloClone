@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> Render success 1`] = `
+<button
+  className="button button--contained-default"
+  disabled={false}
+  type="button"
+>
+  Example
+</button>
+`;
