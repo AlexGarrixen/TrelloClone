@@ -1,4 +1,4 @@
-import { isFn } from '../../utils/typeOf';
+import { isFn, isString, isArray, isObject } from '../../utils/typeOf';
 import { getBoards } from '../../services/boards';
 import { updateBoards } from './boards';
 import {
@@ -84,9 +84,9 @@ export const RECEIVE_UPDATE_BOARD = 'RECEIVE_UPDATE_BOARD';
 export const receiveUpdateBoard = ({ boardId, title, description }) => ({
   type: RECEIVE_UPDATE_BOARD,
   payload: {
-    ...(boardId ? { boardId } : {}),
-    ...(title ? { title } : {}),
-    ...(description ? { description } : {}),
+    ...(isString(boardId) ? { boardId } : {}),
+    ...(isString(title) ? { title } : {}),
+    ...(isString(description) ? { description } : {}),
   },
 });
 
@@ -104,15 +104,15 @@ export const updateCardSelected = ({
 }) => ({
   type: UPDATE_CARD_SELECTED,
   payload: {
-    ...(_id ? { _id } : {}),
-    ...(listId ? { listId } : {}),
-    ...(listName ? { listName } : {}),
-    ...(title ? { title } : {}),
-    ...(description ? { description } : {}),
-    ...(picture ? { picture } : {}),
-    ...(attachments ? { attachments } : {}),
-    ...(comments ? { comments } : {}),
-    ...(labels ? { labels } : {}),
+    ...(isString(_id) ? { _id } : {}),
+    ...(isString(listId) ? { listId } : {}),
+    ...(isString(listName) ? { listName } : {}),
+    ...(isString(title) ? { title } : {}),
+    ...(isString(description) ? { description } : {}),
+    ...(isObject(picture) ? { picture } : {}),
+    ...(isArray(attachments) ? { attachments } : {}),
+    ...(isArray(comments) ? { comments } : {}),
+    ...(isArray(labels) ? { labels } : {}),
   },
 });
 
