@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.config.dev.js",
     "build": "NODE_ENV=production webpack --config config/webpack.config.js",
-    "start:build": "npx serve public -s"
+    "start:build": "npx serve public -s",
+    "test": "jest --watchAll"
   },
   "author": "alexGarrixen",
   "license": "MIT",
@@ -17,12 +18,17 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "autoprefixer": "^9.8.6",
+    "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.3.0",
     "cssnano": "^4.1.10",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "enzyme-to-json": "^3.6.1",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",
+    "jest": "^26.4.2",
     "mini-css-extract-plugin": "^0.11.2",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.4",

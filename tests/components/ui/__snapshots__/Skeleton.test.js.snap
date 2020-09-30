@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Skeleton /> Render sucess 1`] = `
+<div
+  className="skeleton"
+/>
+`;
+
+exports[`<Skeleton /> Test with prop spacing 1`] = `
+<div
+  className="skeleton space-3"
+/>
+`;
+
+exports[`<SkeletonCol /> Render sucess 1`] = `
+<div
+  className="skeleton__col"
+/>
+`;
+
+exports[`<SkeletonCol /> Test with prop cols 1`] = `
+<div
+  className="skeleton__col col-4"
+/>
+`;
+
+exports[`<SkeletonPicture /> Render sucess 1`] = `
+<div
+  className="skeleton__picture"
+/>
+`;
+
+exports[`<SkeletonPicture /> Test with prop cols 1`] = `
+<div
+  className="skeleton__picture col-8"
+/>
+`;
+
+exports[`<SkeletonRow /> Render sucess 1`] = `
+<div
+  className="skeleton__row"
+/>
+`;

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> Render Success 1`] = `
+<article
+  className="card"
+>
+  <div
+    className="card__picture"
+    style={
+      Object {
+        "backgroundImage": "url(undefined)",
+      }
+    }
+  />
+  <h2
+    className="card__title"
+  />
+  Example
+</article>
+`;

@@ -5,7 +5,7 @@ const classes = {
   // class applied if severity='info'
   severityInfo: 'alert--info',
   // class applied if severity='warning'
-  severityWarning: 'alert--wraning',
+  severityWarning: 'alert--warning',
   // class applied if severity='error'
   severityError: 'alert--error',
 };

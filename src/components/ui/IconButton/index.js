@@ -34,7 +34,7 @@ const IconButton = forwardRef(
 
 IconButton.propTypes = {
   children: PropTypes.node,
-  component: PropTypes.element,
+  component: PropTypes.elementType,
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   variant: PropTypes.oneOf(['text', 'contained', 'outlined']),
   type: PropTypes.string,

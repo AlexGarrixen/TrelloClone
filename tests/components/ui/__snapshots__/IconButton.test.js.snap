@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<IconButton /> Render success 1`] = `
+<button
+  className="icon-button button--contained-default"
+  type="button"
+>
+  <svg />
+</button>
+`;
