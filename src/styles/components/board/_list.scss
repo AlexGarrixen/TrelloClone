@@ -3,9 +3,13 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  margin-right: theme('spacing.8');
 
   &__header {
     align-items: center;
+    cursor: grab;
     display: flex;
     justify-content: space-between;
     margin-bottom: theme('spacing.4');
@@ -27,18 +31,24 @@
   }
 }
 
-.card-drop-preview {
+.list-drop-preview {
   border: 1px dashed theme('colors.blue.20');
   background-color: theme('colors.blue.10');
   border-radius: theme('borderRadius.lg');
+}
+
+.card-drop-preview {
+  @extend .list-drop-preview;
   margin-bottom: theme('spacing.6');
 }
 
-.card-ghost {
+.card-ghost,
+.list-ghost {
   transform: rotate(3deg);
 }
 
-.card-ghost-drop {
+.card-ghost-drop,
+.list-ghost-drop {
   transform: rotate(0);
 }
 

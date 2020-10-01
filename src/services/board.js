@@ -2,21 +2,6 @@ import axios from 'axios';
 import getAxiosError from '../utils/getAxiosError';
 import { apiUrl } from './apiUrl';
 
-export const getBoardLists = async (boardId) => {
-  try {
-    const { data: lists } = await axios.get(`${apiUrl}/lists`, {
-      params: {
-        boardId,
-      },
-    });
-
-    return lists;
-  } catch (e) {
-    const message = getAxiosError(e);
-    throw message;
-  }
-};
-
 export const createList = async (boardId, { title }) => {
   try {
     const { data } = await axios.post(
@@ -126,11 +111,12 @@ export const updateCard = async (
   }
 };
 
-export const updateBoard = async (boardId, { title, description }) => {
+export const updateBoard = async (boardId, { title, description, lists }) => {
   let dataBody = {};
 
   if (title) dataBody.title = title;
   if (description) dataBody.description = description;
+  if (lists) dataBody.lists = lists;
 
   try {
     const { data } = await axios({

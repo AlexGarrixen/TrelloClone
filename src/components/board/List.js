@@ -1,6 +1,6 @@
 import React, { useRef, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Container } from 'react-smooth-dnd';
+import { Container, Draggable } from 'react-smooth-dnd';
 import Icons from '../icons';
 import IconButton from '../ui/IconButton';
 import ButtonAddTarget from './ButtonAddTarget';
@@ -36,53 +36,55 @@ const List = ({
   );
 
   return (
-    <article className='board-list'>
-      <div className='board-list__header'>
-        <h3 className='board-list__title'>{title}</h3>
-        <IconButton
-          ref={(ref) => {
-            buttonMore.current = ref;
-            setReferenceElement(ref);
-          }}
-          className='board-list__button-more'
-          onClick={handleToggleOptions()}
-        >
-          <Icons.EllipsisV />
-        </IconButton>
-      </div>
-      <div className='board-list__body'>
-        <Container
-          dragClass='card-ghost'
-          dropClass='card-ghost-drop'
-          groupName='col'
-          dropPlaceholderAnimationDuration={200}
-          onDrop={onDrop}
-          getChildPayload={getChildPayload}
-          dragBeginDelay={isMobileMatchMedia ? 400 : 0}
-          dropPlaceholder={{
-            animationDuration: 150,
-            showOnTop: true,
-            className: 'card-drop-preview',
-          }}
-        >
-          {children}
-        </Container>
-      </div>
-      <div className={lengthChildrens > 1 ? 'mt-4' : ''}>
-        <ButtonAddTarget listId={id} />
-        {showPopoverOptions && (
-          <PopoverListOptions
-            {...attributes}
-            ref={setPopperElement}
-            style={styles}
-            listId={id}
-            onOutsideClick={({ target }) => {
-              if (target !== buttonMore.current) handleToggleOptions(false)();
+    <Draggable>
+      <article className='board-list'>
+        <div className='board-list__header'>
+          <h3 className='board-list__title'>{title}</h3>
+          <IconButton
+            ref={(ref) => {
+              buttonMore.current = ref;
+              setReferenceElement(ref);
             }}
-          />
-        )}
-      </div>
-    </article>
+            className='board-list__button-more'
+            onClick={handleToggleOptions()}
+          >
+            <Icons.EllipsisV />
+          </IconButton>
+        </div>
+        <div className='board-list__body'>
+          <Container
+            dragClass='card-ghost'
+            dropClass='card-ghost-drop'
+            groupName='col'
+            dropPlaceholderAnimationDuration={200}
+            onDrop={onDrop}
+            getChildPayload={getChildPayload}
+            dragBeginDelay={isMobileMatchMedia ? 400 : 0}
+            dropPlaceholder={{
+              animationDuration: 150,
+              showOnTop: true,
+              className: 'card-drop-preview',
+            }}
+          >
+            {children}
+          </Container>
+        </div>
+        <div className={lengthChildrens > 1 ? 'mt-4' : ''}>
+          <ButtonAddTarget listId={id} />
+          {showPopoverOptions && (
+            <PopoverListOptions
+              {...attributes}
+              ref={setPopperElement}
+              style={styles}
+              listId={id}
+              onOutsideClick={({ target }) => {
+                if (target !== buttonMore.current) handleToggleOptions(false)();
+              }}
+            />
+          )}
+        </div>
+      </article>
+    </Draggable>
   );
 };
 
