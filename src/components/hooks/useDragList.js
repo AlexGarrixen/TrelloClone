@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
+  requestUpdateListsOnDrop,
   requestUpdateListOnDrop,
   requestUpdateCardOnDrop,
 } from '../../redux/actions/board';
@@ -22,6 +23,24 @@ const useDragList = () => {
     const list = lists.find((list) => list._id === listId);
     const card = list.cards[cardIdx];
     return card;
+  };
+
+  const handleOnDropColumn = (dragResult) => {
+    const { addedIndex, removedIndex, payload: colIdx } = dragResult;
+    const newLists = [...lists];
+    let listToAdd = { ...lists[colIdx] };
+
+    if (removedIndex !== null) {
+      listToAdd = newLists.splice(removedIndex, 1)[0];
+    }
+    if (addedIndex !== null) {
+      newLists.splice(addedIndex, 0, listToAdd);
+    }
+
+    const movedColumn = !(addedIndex === 0 && removedIndex === 0);
+
+    set(newLists);
+    if (movedColumn) dispatch(requestUpdateListsOnDrop(newLists));
   };
 
   const handleOnDrop = (listId, dragResult) => {
@@ -51,12 +70,15 @@ const useDragList = () => {
   };
 
   useEffect(() => {
-    if (lists.length !== boardLists.length) set(prevRequests[boardId].lists);
+    if (prevRequests[boardId]) {
+      if (lists.length !== boardLists.length) set(prevRequests[boardId].lists);
+    }
   }, [boardLists]);
 
   return {
     lists,
     handleOnDrop,
+    handleOnDropColumn,
     getCard,
   };
 };

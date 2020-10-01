@@ -2,7 +2,6 @@ import { isFn, isString, isArray, isObject } from '../../utils/typeOf';
 import { getBoards } from '../../services/boards';
 import { updateBoards } from './boards';
 import {
-  getBoardLists,
   createList,
   createCard,
   createCardComment,
@@ -128,9 +127,10 @@ export const fetchBoardLists = (boardId, onSuccessRequest) => async (
 ) => {
   try {
     const [board] = await getBoards(boardId);
+
     if (board === undefined) return dispatch(receiveNotFound());
-    const lists = await getBoardLists(boardId);
-    const { title, description } = board;
+
+    const { title, description, lists } = board;
 
     dispatch(receiveBoardLists({ boardId, title, description, lists }));
     isFn(onSuccessRequest) && onSuccessRequest();
@@ -316,6 +316,24 @@ export const requestUpdateDescription = (
     dispatch(updatePrevRequests(newPrevRequests));
   } catch (e) {
     dispatch(receiveCardError(e));
+  }
+};
+
+export const requestUpdateListsOnDrop = (newLists) => async (
+  dispatch,
+  getState
+) => {
+  const { boardId, prevRequests } = getState().board;
+  const newListsId = newLists.map(({ _id }) => _id);
+
+  try {
+    await updateBoard(boardId, { lists: newListsId });
+    const newPrevRequests = { ...prevRequests };
+    newPrevRequests[boardId].lists = newLists;
+
+    dispatch(updatePrevRequests(newPrevRequests));
+  } catch (e) {
+    dispatch(receiveError(e));
   }
 };
 
