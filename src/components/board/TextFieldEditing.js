@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '../ui/TextField';
 import Button from '../ui/Button';
@@ -17,36 +17,46 @@ const TextFieldEditing = ({
   value,
   name,
   disabledSuccessButton = false,
-}) => (
-  <div className='textfield-editing'>
-    <TextField
-      textArea={textArea}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      onBlur={onBlur}
-      name={name}
-      fullWidth
-      onKeyUp={
-        textArea ? ({ target }) => calculateHeightTextArea(target) : () => {}
-      }
-      {...(textArea ? { rows: 1 } : {})}
-    />
-    <div className='textfield-editing__actions'>
-      <IconButton variant='text' onClick={onRequestCancel}>
-        <Icons.Close />
-      </IconButton>
-      <Button
-        color='primary'
-        startIcon={<Icons.Plus />}
-        onClick={onRequestSuccess}
-        disabled={disabledSuccessButton}
-      >
-        {buttonText}
-      </Button>
+}) => {
+  const refTextArea = useRef(null);
+
+  useEffect(() => {
+    if (textArea && refTextArea.current)
+      calculateHeightTextArea(refTextArea.current);
+  }, [refTextArea]);
+
+  return (
+    <div className='textfield-editing'>
+      <TextField
+        ref={refTextArea}
+        textArea={textArea}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        name={name}
+        fullWidth
+        onKeyUp={
+          textArea ? ({ target }) => calculateHeightTextArea(target) : () => {}
+        }
+        {...(textArea ? { rows: 1 } : {})}
+      />
+      <div className='textfield-editing__actions'>
+        <IconButton variant='text' onClick={onRequestCancel}>
+          <Icons.Close />
+        </IconButton>
+        <Button
+          color='primary'
+          startIcon={<Icons.Plus />}
+          onClick={onRequestSuccess}
+          disabled={disabledSuccessButton}
+        >
+          {buttonText}
+        </Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 TextFieldEditing.propTypes = {
   buttonText: PropTypes.string,
