@@ -50,8 +50,8 @@ const Description = () => {
         <TextFieldEditing
           buttonText={isRequesting ? 'Updating...' : 'Save'}
           onRequestCancel={handleToogleMode()}
+          onRequestSuccess={handleSubmit}
           onChange={handleChange}
-          onBlur={handleSubmit}
           value={form.description}
           name='description'
           textArea
