@@ -1,0 +1,14 @@
+.boards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: theme('spacing.10');
+  margin-top: theme('spacing.10');
+
+  @include max-breakpoint(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include max-breakpoint(sm) {
+    grid-template-columns: 1fr;
+  }
+}

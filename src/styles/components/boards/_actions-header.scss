@@ -1,0 +1,10 @@
+.boards-actions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__title {
+    font-weight: 500;
+    font-size: theme('fontSize.lg');
+  }
+}

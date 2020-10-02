@@ -12,7 +12,7 @@ const BoardsGrid = () => {
   if (isFetching) return <SkeletonBoards count={4} />;
 
   return (
-    <ul className='boards__grid'>
+    <ul className='boards-grid'>
       {data.map((board) => (
         <Board key={board._id} {...board} />
       ))}

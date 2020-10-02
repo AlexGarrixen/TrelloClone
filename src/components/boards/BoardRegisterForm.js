@@ -23,7 +23,7 @@ const BoardRegisterForm = () => {
   const { isUploading, progress, filename } = uploadAttachment;
 
   return (
-    <form className='boards__registration-form' onSubmit={handleSubmit}>
+    <form className='boards-registration-form' onSubmit={handleSubmit}>
       {errors.length > 0 && (
         <Alert severity='error' className='mb-3'>
           {errors.map((err) => (
@@ -38,13 +38,13 @@ const BoardRegisterForm = () => {
       )}
       <IconButton
         color='primary'
-        className='boards__registration-form__icon-close'
+        className='boards-registration-form__icon-close'
         onClick={handleCancel}
       >
         <Icons.Close />
       </IconButton>
       <div
-        className='boards__registration-form__picture'
+        className='boards-registration-form__picture'
         style={{ backgroundImage: `url(${form.picture.path})` }}
       />
       {isUploading && (
@@ -74,7 +74,7 @@ const BoardRegisterForm = () => {
           Cover
         </Button>
       </label>
-      <div className='boards__registration-form__actions'>
+      <div className='boards-registration-form__actions'>
         <Button variant='text' onClick={handleCancel}>
           Cancel
         </Button>
