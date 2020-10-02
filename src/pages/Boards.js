@@ -19,8 +19,8 @@ const Boards = () => {
   return (
     <section className='boards'>
       <Container>
-        <div className='boards__actions'>
-          <h3>All Boards</h3>
+        <div className='boards-actions-header'>
+          <h3 className='boards-actions-header__title'>All Boards</h3>
           <ButtonAdd onClick={() => dispatch(setShowRegistrationModal(true))} />
         </div>
         <BoardsGrid />

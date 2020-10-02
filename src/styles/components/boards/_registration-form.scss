@@ -1,0 +1,33 @@
+.boards-registration-form {
+  position: relative;
+
+  &__icon-close {
+    position: absolute;
+    right: -0.75rem;
+    top: -0.75rem;
+  }
+
+  &__picture {
+    border-radius: theme('borderRadius.md');
+    background-color: theme('colors.gray.20');
+    background-size: cover;
+    background-position: center;
+    height: 78px;
+  }
+
+  input[type='text'] {
+    margin-top: theme('spacing.3');
+    margin-bottom: theme('spacing.6');
+    font-size: theme('fontSize.2xs');
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: theme('spacing.6');
+
+    button:first-child {
+      margin-right: 4px;
+    }
+  }
+}

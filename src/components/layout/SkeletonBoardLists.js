@@ -29,7 +29,7 @@ const SkeletonHeader = () => (
 );
 
 const SkeletonListsGrid = () => (
-  <ul className='board-lists-grid'>
+  <ul className='board-lists-grid flex'>
     <li className='w-48 mr-4'>
       <div className='mb-4'>
         <SkeletonCard />

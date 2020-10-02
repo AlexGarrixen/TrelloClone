@@ -9,7 +9,7 @@ const SkeletonBoard = () => (
 );
 
 const SkeletonBoards = ({ count = 7 }) => (
-  <ul className='boards__grid'>
+  <ul className='boards-grid'>
     {[...Array(count).keys()].map((idx) => (
       <SkeletonBoard key={idx} />
     ))}
