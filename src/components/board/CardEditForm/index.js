@@ -6,16 +6,12 @@ import Description from './Description';
 import Attachments from './Attachments';
 import Comments from './Comments';
 import Actions from './Actions';
-import ButtonIcon from '../../ui/IconButton';
-import Icons from '../../icons';
 import Alert from '../../ui/Alert';
 import UploadFile from '../../layout/UploadFile';
-import useEditCardModal from '../../hooks/useEditCardModal';
 import useCardAttachmentUpload from '../../hooks/useCardAttachmentUpload';
 import { isArray } from '../../../utils/typeOf';
 
 const CardEditForm = () => {
-  const { handleCloseCardSelected } = useEditCardModal();
   const { cardSelected, cardErrors } = useSelector(({ board }) => board);
   const { title, listName, picture, attachments, comments } = cardSelected;
   const {
@@ -27,13 +23,6 @@ const CardEditForm = () => {
 
   return (
     <div className='board-card-edit-form'>
-      <ButtonIcon
-        color='primary'
-        className='board-card-edit-form__button-close'
-        onClick={handleCloseCardSelected}
-      >
-        <Icons.Close />
-      </ButtonIcon>
       {cardErrors.length > 0 && (
         <Alert severity='error' className='mb-3'>
           {cardErrors.map((err) => (

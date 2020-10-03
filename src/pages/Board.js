@@ -1,6 +1,6 @@
 import React from 'react';
 import ListsGrid from '../components/board/ListsGrid';
-import Modal from 'react-modal';
+import Modal from '../components/ui/Modal';
 import Alert from '../components/ui/Alert';
 import CardEditForm from '../components/board/CardEditForm';
 import HeaderActions from '../components/board/HeaderActions';
@@ -10,8 +10,6 @@ import useFetchBoard from '../components/hooks/useFetchBoard';
 import useEditCardModal from '../components/hooks/useEditCardModal';
 import useBoardSidebarMenu from '../components/hooks/useBoardSidebarMenu';
 import useBoardError from '../components/hooks/useBoardError';
-
-Modal.setAppElement('#app');
 
 const Board = () => {
   const { isFetching, notFound } = useFetchBoard();
@@ -32,20 +30,10 @@ const Board = () => {
     <section className='board'>
       <HeaderActions />
       <ListsGrid />
-      <Modal
-        className='modal modal--lg'
-        overlayClassName='modal__overlay'
-        onRequestClose={handleCloseCardSelected}
-        isOpen={isOpen}
-      >
+      <Modal isOpen={isOpen} onRequestClose={handleCloseCardSelected} size='lg'>
         <CardEditForm />
       </Modal>
-      <Modal
-        className='modal modal--lg'
-        overlayClassName='modal__overlay'
-        onRequestClose={handleClearError}
-        isOpen={!!error}
-      >
+      <Modal isOpen={!!error} onRequestClose={handleClearError} size='lg'>
         <Alert severity='error'>{error}</Alert>
       </Modal>
       {isOpenSidebarMenu && <MenuSidebar />}

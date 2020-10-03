@@ -9,8 +9,8 @@
   position: absolute;
   outline: none;
   right: 0;
-  top: 60px;
   width: 100%;
+  margin: 60px auto;
 
   &__overlay {
     background-color: rgba(0, 0, 0, 0.1);
@@ -20,6 +20,13 @@
     right: 0;
     top: 0;
     overflow-y: auto;
+  }
+
+  &__icon-close {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    z-index: 1;
   }
 
   &--sm {
