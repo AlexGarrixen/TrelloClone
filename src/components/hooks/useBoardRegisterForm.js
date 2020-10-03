@@ -57,6 +57,7 @@ const useBoardRegisterForm = () => {
     if (form.picture.path) {
       setRequestingDelAttachment(true);
       await deleteAttachment(attachment.id);
+      setForm({ ...form, picture: { path: '', publicId: '' } });
       setRequestingDelAttachment(false);
     }
     dispatch(setShowRegistrationModal(false));
