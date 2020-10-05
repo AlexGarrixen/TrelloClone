@@ -10,11 +10,11 @@ import {
 const useDragList = () => {
   const { boardId } = useParams();
   const dispatch = useDispatch();
-  const { prevRequests } = useSelector(({ board }) => board);
+  const { boards } = useSelector(({ prevRequests }) => prevRequests);
 
-  const boardLists = useMemo(() => prevRequests[boardId]?.lists || [], [
+  const boardLists = useMemo(() => boards[boardId]?.lists || [], [
     boardId,
-    prevRequests[boardId]?.lists,
+    boards[boardId]?.lists,
   ]);
 
   const [lists, set] = useState(boardLists);
@@ -70,8 +70,8 @@ const useDragList = () => {
   };
 
   useEffect(() => {
-    if (prevRequests[boardId]) {
-      if (lists.length !== boardLists.length) set(prevRequests[boardId].lists);
+    if (boards[boardId]) {
+      if (lists.length !== boardLists.length) set(boards[boardId].lists);
     }
   }, [boardLists]);
 
