@@ -11,5 +11,8 @@
   .smooth-dnd-container.horizontal {
     flex-shrink: 0;
     height: 100%;
+
+    //fix scroll in firefox
+    display: flex !important;
   }
 }

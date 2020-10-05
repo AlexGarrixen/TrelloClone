@@ -2,16 +2,15 @@ import {
   RECEIVE_NOT_FOUND,
   RECEIVE_ERROR,
   RECEIVE_CARD_ERROR,
-  RECEIVE_BOARD_LISTS,
+  RECEIVE_BOARD,
   RECEIVE_UPDATE_BOARD,
-  RECEIVE_DELETED_BOARD,
   SELECT_VIEW_CARD,
   CLOSE_VIEW_CARD_SELECTED,
-  UPDATE_PREV_REQUESTS,
   UPDATE_CARD_SELECTED,
   RESET_CARD_SELECTED,
   TOGGLE_SIDEBAR_MENU,
   CLEAR_BOARD_ERROR,
+  RESET_BOARD,
 } from '../actions/board';
 
 const initialState = {
@@ -19,7 +18,6 @@ const initialState = {
   title: '',
   description: '',
   cardSelected: {},
-  prevRequests: {},
   cardModalEditOpen: false,
   sidebarMenuOpen: false,
   error: null,
@@ -29,39 +27,17 @@ const initialState = {
 
 const boardReducer = (state = initialState, action) => {
   switch (action.type) {
-    case RECEIVE_BOARD_LISTS:
+    case RECEIVE_BOARD:
       return {
         ...state,
         boardId: action.boardId,
         title: action.title,
         description: action.description,
-        prevRequests: {
-          ...state.prevRequests,
-          [action.boardId]: {
-            boardId: action.boardId,
-            title: action.title,
-            description: action.description,
-            lists: action.lists,
-          },
-        },
       };
     case RECEIVE_UPDATE_BOARD:
       return {
         ...state,
         ...action.payload,
-      };
-    case RECEIVE_DELETED_BOARD:
-      return {
-        ...state,
-        boardId: '',
-        title: '',
-        description: '',
-        prevRequests: action.newPrevRequests,
-      };
-    case UPDATE_PREV_REQUESTS:
-      return {
-        ...state,
-        prevRequests: action.newPrevRequests,
       };
     case SELECT_VIEW_CARD:
       return {
@@ -109,6 +85,10 @@ const boardReducer = (state = initialState, action) => {
       return {
         ...state,
         cardErrors: [...state.cardErrors, action.error],
+      };
+    case RESET_BOARD:
+      return {
+        ...initialState,
       };
     default:
       return state;
