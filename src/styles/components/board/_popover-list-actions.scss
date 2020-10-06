@@ -5,6 +5,7 @@
   font-size: 12px;
   min-width: 180px;
   overflow: hidden;
+  z-index: 1;
 
   &__option {
     padding: theme('spacing.2');
