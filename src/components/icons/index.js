@@ -14,6 +14,7 @@ import Check from './Check';
 import Info from './Info';
 import Warning from './Warning';
 import Error from './Error';
+import AngleLeft from './AngleLeft';
 
 const Icons = {
   Close,
@@ -31,6 +32,7 @@ const Icons = {
   Info,
   Warning,
   Error,
+  AngleLeft,
 };
 
 export default Icons;

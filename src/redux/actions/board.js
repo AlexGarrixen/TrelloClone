@@ -8,6 +8,7 @@ import {
   createCardComment,
   createCardLabel,
   updateBoard,
+  updateListTitle,
   updateCard,
   updateCardsList,
   updateCardComment,
@@ -306,6 +307,30 @@ export const requestUpdateDescription = (
     );
   } catch (e) {
     dispatch(receiveCardError(e));
+  }
+};
+
+export const requestUpdateListTitle = (
+  listId,
+  newTitle,
+  options = { onRequest: noop, onSuccessRequest: noop }
+) => async (dispatch, getState) => {
+  const { boardId } = getState().board;
+
+  try {
+    isFn(options.onRequest) && options.onRequest();
+    const newList = await updateListTitle(listId, newTitle);
+    isFn(options.onSuccessRequest) && options.onSuccessRequest();
+
+    dispatch(
+      prevRequestsActions.receiveBoardListTitleUpdated({
+        boardId,
+        listId,
+        newTitle: newList.title,
+      })
+    );
+  } catch (e) {
+    dispatch(receiveError(e));
   }
 };
 

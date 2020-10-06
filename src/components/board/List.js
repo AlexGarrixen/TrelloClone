@@ -4,7 +4,7 @@ import { Container, Draggable } from 'react-smooth-dnd';
 import Icons from '../icons';
 import IconButton from '../ui/IconButton';
 import ButtonAddTarget from './ButtonAddTarget';
-import PopoverListOptions from './PopoverListOptions';
+import PopoverListActions from './PopoverListActions';
 import usePopper from '../hooks/usePopper';
 import useToggle from '../hooks/useToggle';
 
@@ -16,7 +16,7 @@ const List = ({
   id,
   isMobileMatchMedia,
 }) => {
-  const [showPopoverOptions, handleToggleOptions] = useToggle(false);
+  const [showPopoverActions, handleToggleActions] = useToggle(false);
   const lengthChildrens = useMemo(() => children.length, [children]);
   const buttonMore = useRef(null);
 
@@ -46,7 +46,7 @@ const List = ({
               setReferenceElement(ref);
             }}
             className='board-list__button-more'
-            onClick={handleToggleOptions()}
+            onClick={handleToggleActions()}
           >
             <Icons.EllipsisV />
           </IconButton>
@@ -71,14 +71,16 @@ const List = ({
         </div>
         <div className={lengthChildrens > 1 ? 'mt-4' : ''}>
           <ButtonAddTarget listId={id} />
-          {showPopoverOptions && (
-            <PopoverListOptions
+          {showPopoverActions && (
+            <PopoverListActions
               {...attributes}
               ref={setPopperElement}
               style={styles}
               listId={id}
+              listName={title}
+              onRequestClose={handleToggleActions(false)}
               onOutsideClick={({ target }) => {
-                if (target !== buttonMore.current) handleToggleOptions(false)();
+                if (target !== buttonMore.current) handleToggleActions(false)();
               }}
             />
           )}

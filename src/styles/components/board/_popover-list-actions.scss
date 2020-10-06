@@ -1,0 +1,38 @@
+.board-popover-list-options {
+  background-color: #fff;
+  border-radius: theme('borderRadius.lg');
+  box-shadow: theme('boxShadow.md');
+  font-size: 12px;
+  min-width: 180px;
+  overflow: hidden;
+
+  &__option {
+    padding: theme('spacing.2');
+    cursor: pointer;
+
+    &:hover {
+      background-color: theme('colors.gray.10');
+    }
+  }
+
+  &__header {
+    align-items: center;
+    border-bottom: 1px solid theme('colors.gray.30');
+    display: flex;
+    justify-content: space-between;
+    padding: theme('spacing.2');
+  }
+
+  &__header-title {
+    font-weight: 400;
+  }
+
+  &__header-button-close {
+    margin-left: 4px;
+    padding: 0;
+  }
+
+  &__header-button-back {
+    padding: 0;
+  }
+}
