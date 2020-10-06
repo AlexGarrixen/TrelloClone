@@ -149,6 +149,23 @@ export const updateCardComment = async (cardId, commentId, newComment) => {
   }
 };
 
+export const updateListTitle = async (listId, newTitle) => {
+  try {
+    const { data } = await axios({
+      url: `${apiUrl}/lists/${listId}`,
+      method: 'PUT',
+      data: {
+        title: newTitle,
+      },
+    });
+
+    return data;
+  } catch (e) {
+    const message = getAxiosError(e);
+    throw message;
+  }
+};
+
 export const deleteList = async (listId) => {
   try {
     const { data } = await axios.delete(`${apiUrl}/lists/${listId}`);

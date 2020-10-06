@@ -68,6 +68,24 @@ export const updateBoardLists = (state, action) => {
   };
 };
 
+export const updateBoardListTitle = (state, action) => {
+  const { boardId, listId, newTitle } = action;
+  const newLists = [...state.boards[boardId].lists];
+  const ownerList = newLists.find((list) => list._id === listId);
+  ownerList.title = newTitle;
+
+  return {
+    ...state,
+    boards: {
+      ...state.boards,
+      [boardId]: {
+        ...state.boards[boardId],
+        lists: newLists,
+      },
+    },
+  };
+};
+
 export const updateBoardListCards = (state, action) => {
   const { boardId, listId, newCards } = action;
   const newLists = [...state.boards[boardId].lists];

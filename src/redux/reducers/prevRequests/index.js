@@ -6,6 +6,7 @@ import {
   RECEIVE_NEW_BOARD_DESC,
   RECEIVE_NEW_BOARD_LIST,
   RECEIVE_BOARD_LISTS_UPDATED,
+  RECEIVE_BOARD_LIST_TITLE_UPDATED,
   RECEIVE_BOARD_LIST_CARDS_UPDATED,
   RECEIVE_BOARD_LIST_DELETED,
   RECEIVE_NEW_BOARD_CARD,
@@ -38,6 +39,8 @@ const prevRequestsReducer = (state = initialState, action) => {
       return handlers.addNewListToBoard(state, action);
     case RECEIVE_BOARD_LISTS_UPDATED:
       return handlers.updateBoardLists(state, action);
+    case RECEIVE_BOARD_LIST_TITLE_UPDATED:
+      return handlers.updateBoardListTitle(state, action);
     case RECEIVE_BOARD_LIST_CARDS_UPDATED:
       return handlers.updateBoardListCards(state, action);
     case RECEIVE_BOARD_LIST_DELETED:

@@ -25,6 +25,19 @@ export const receiveNewBoardList = (boardId, newList) => ({
   newList,
 });
 
+export const RECEIVE_BOARD_LIST_TITLE_UPDATED =
+  'RECEIVE_BOARD_LIST_TITLE_UPDATED';
+export const receiveBoardListTitleUpdated = ({
+  boardId,
+  listId,
+  newTitle,
+}) => ({
+  type: RECEIVE_BOARD_LIST_TITLE_UPDATED,
+  boardId,
+  listId,
+  newTitle,
+});
+
 export const RECEIVE_BOARD_LISTS_UPDATED = 'RECEIVE_BOARD_LISTS_UPDATED';
 export const receiveBoardListsUpdated = (boardId, newLists) => ({
   type: RECEIVE_BOARD_LISTS_UPDATED,
