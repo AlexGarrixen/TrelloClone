@@ -5,19 +5,18 @@ import Icons from '../icons';
 import IconButton from '../ui/IconButton';
 import ButtonAddTarget from './ButtonAddTarget';
 import PopoverListActions from './PopoverListActions';
+import Card from './Card';
 import usePopper from '../hooks/usePopper';
 import useToggle from '../hooks/useToggle';
+import useList from '../hooks/board/useList';
+import { isArray } from '../../utils/typeOf';
 
-const List = ({
-  children,
-  onDrop,
-  getChildPayload,
-  title,
-  id,
-  isMobileMatchMedia,
-}) => {
+const List = ({ onDrop, getChildPayload, id, isMobileMatchMedia }) => {
+  const list = useList(id);
   const [showPopoverActions, handleToggleActions] = useToggle(false);
-  const lengthChildrens = useMemo(() => children.length, [children]);
+  const lengthCards = useMemo(() => (list ? list.cards.length : 0), [
+    list?.cards,
+  ]);
   const buttonMore = useRef(null);
 
   const {
@@ -39,7 +38,7 @@ const List = ({
     <Draggable>
       <article className='board-list'>
         <div className='board-list__header'>
-          <h3 className='board-list__title'>{title}</h3>
+          <h3 className='board-list__title'>{list?.title || ''}</h3>
           <IconButton
             ref={(ref) => {
               buttonMore.current = ref;
@@ -66,10 +65,11 @@ const List = ({
               className: 'card-drop-preview',
             }}
           >
-            {children}
+            {isArray(list?.cards) &&
+              list.cards.map((cardId) => <Card key={cardId} id={cardId} />)}
           </Container>
         </div>
-        <div className={lengthChildrens > 1 ? 'mt-4' : ''}>
+        <div className={lengthCards > 1 ? 'mt-4' : ''}>
           <ButtonAddTarget listId={id} />
           {showPopoverActions && (
             <PopoverListActions
@@ -77,7 +77,7 @@ const List = ({
               ref={setPopperElement}
               style={styles}
               listId={id}
-              listName={title}
+              listName={list?.title || ''}
               onRequestClose={handleToggleActions(false)}
               onOutsideClick={({ target }) => {
                 if (target !== buttonMore.current) handleToggleActions(false)();
@@ -91,10 +91,8 @@ const List = ({
 };
 
 List.propTypes = {
-  children: PropTypes.node,
   onDrop: PropTypes.func,
   getChildPayload: PropTypes.func,
-  title: PropTypes.string,
   id: PropTypes.string.isRequired,
   isMobileMatchMedia: PropTypes.bool,
 };

@@ -4,7 +4,7 @@ import TextField from '../../ui/TextField';
 import Button from '../../ui/Button';
 import Comment from './Comment';
 import calculeHeightTextArea from '../../../utils/calculateHeightTextArea';
-import useCreateCardComment from '../../hooks/useCreateCardComment';
+import useCreateCardComment from '../../hooks/board/useCreateCardComment';
 import { isArray } from '../../../utils/typeOf';
 
 const Comments = ({ comments }) => {

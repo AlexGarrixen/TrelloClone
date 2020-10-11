@@ -1,13 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import Button from '../ui/Button';
 import Icons from '../icons';
-import useBoardSidebarMenu from '../hooks/useBoardSidebarMenu';
+import useBoardSidebarMenu from '../hooks/board/useBoardSidebarMenu';
 
-const HeaderActions = () => {
-  const { title } = useSelector(({ board }) => board);
+const HeaderActions = ({ title }) => {
   const { handleToggle } = useBoardSidebarMenu();
 
   return (
@@ -27,6 +25,10 @@ const HeaderActions = () => {
       </Button>
     </div>
   );
+};
+
+HeaderActions.propTypes = {
+  title: PropTypes.string,
 };
 
 export default HeaderActions;

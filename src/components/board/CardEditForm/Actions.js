@@ -5,7 +5,7 @@ import Icons from '../../icons';
 import TextField from '../../ui/TextField';
 import PopoverAddLabel from '../PopoverAddLabel';
 import usePopper from '../../hooks/usePopper';
-import useDeleteCard from '../../hooks/useDeleteCard';
+import useDeleteCard from '../../hooks/board/useDeleteCard';
 import useToggle from '../../hooks/useToggle';
 
 const Actions = ({ onRequestUploadFile }) => {

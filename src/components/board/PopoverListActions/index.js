@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import OutsideClickHandler from 'react-outside-click-handler';
 import Header from './Header';
 import ViewEditListTitle from './ViewEditListTitle';
-import useDeleteBoardList from '../../hooks/useDeleteBoardList';
+import useDeleteBoardList from '../../hooks/board/useDeleteList';
 import useTab from '../../hooks/useTab';
 
 const PopoverListActions = forwardRef(

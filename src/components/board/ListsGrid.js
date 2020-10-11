@@ -1,9 +1,8 @@
 import React from 'react';
 import { Container } from 'react-smooth-dnd';
 import List from './List';
-import Card from './Card';
 import ButtonAddList from './ButtonAddList';
-import useDragList from '../hooks/useDragList';
+import useDragList from '../hooks/board/useDragList';
 import useMatchMedia from '../hooks/useMatchMedia';
 import { isArray } from '../../utils/typeOf';
 
@@ -30,18 +29,14 @@ const ListsGrid = () => {
           }}
         >
           {isArray(lists) &&
-            lists.map(({ cards, _id, title }) => (
+            lists.map((listId) => (
               <List
-                key={_id}
-                onDrop={(e) => handleOnDrop(_id, e)}
-                getChildPayload={(idx) => getCard(idx, _id)}
-                title={title}
-                id={_id}
+                key={listId}
+                onDrop={(e) => handleOnDrop(listId, e)}
+                getChildPayload={(idx) => getCard(idx, listId)}
+                id={listId}
                 isMobileMatchMedia={isMatchMedia}
-              >
-                {isArray(cards) &&
-                  cards.map((props) => <Card key={props._id} {...props} />)}
-              </List>
+              />
             ))}
         </Container>
         <ButtonAddList />

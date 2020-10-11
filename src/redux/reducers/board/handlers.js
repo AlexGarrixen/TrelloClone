@@ -1,51 +1,29 @@
 export const setBoard = (state, action) => {
-  const { boardId, title, description } = action;
+  const { board } = action;
 
   return {
     ...state,
-    boardId,
-    title,
-    description,
-  };
-};
-
-export const updateBoard = (state, action) => {
-  const { payload } = action;
-
-  return {
-    ...state,
-    ...payload,
+    _id: board._id,
+    title: board.title,
+    description: board.description,
+    picture: board.picture,
+    lists: board.lists,
   };
 };
 
 export const setSelectedCard = (state, action) => {
-  const { cardData } = action;
+  const { cardId } = action;
 
   return {
     ...state,
     cardModalEditOpen: true,
-    cardSelected: cardData,
+    cardSelected: cardId,
   };
 };
 
-export const updateCardSelected = (state, action) => {
-  const { payload } = action;
-
-  return {
-    ...state,
-    cardSelected: { ...state.cardSelected, ...payload },
-  };
-};
-
-export const resetSelectedCard = (state) => ({
+export const removeSelectedCard = (state) => ({
   ...state,
-  cardSelected: {},
-});
-
-export const closeSelectedCard = (state) => ({
-  ...state,
-  cardModalEditOpen: false,
-  cardSelected: {},
+  cardSelected: '',
 });
 
 export const toggleSidebarMenu = (state, action) => {
@@ -82,5 +60,32 @@ export const setCardError = (state, action) => {
   return {
     ...state,
     cardErrors: [...state.cardErrors, error],
+  };
+};
+
+export const updateLists = (state, action) => {
+  const { newLists } = action;
+
+  return {
+    ...state,
+    lists: newLists,
+  };
+};
+
+export const updateTitle = (state, action) => {
+  const { newTitle } = action;
+
+  return {
+    ...state,
+    title: newTitle,
+  };
+};
+
+export const updateDescription = (state, action) => {
+  const { newDescription } = action;
+
+  return {
+    ...state,
+    description: newDescription,
   };
 };

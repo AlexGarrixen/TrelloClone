@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../ui/Button';
 import Icons from '../../icons';
-import useDeleteBoard from '../../hooks/useDeleteBoard';
+import useDeleteBoard from '../../hooks/board/useDeleteBoard';
 
 const MenuFooterActions = () => {
   const { isRequesting, handleDeleteBoard } = useDeleteBoard();

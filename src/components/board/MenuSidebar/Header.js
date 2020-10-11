@@ -2,8 +2,8 @@ import React from 'react';
 import IconButton from '../../ui/IconButton';
 import TextField from '../../ui/TextField';
 import Icons from '../../icons';
-import useBoardSidebarMenu from '../../hooks/useBoardSidebarMenu';
-import useUpdateBoardTitle from '../../hooks/useUpdateBoardTitle';
+import useBoardSidebarMenu from '../../hooks/board/useBoardSidebarMenu';
+import useUpdateBoardTitle from '../../hooks/board/useUpdateBoardTitle';
 
 const MenuHeader = () => {
   const { handleToggle } = useBoardSidebarMenu();

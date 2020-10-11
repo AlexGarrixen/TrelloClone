@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import OutsideClickHandler from 'react-outside-click-handler';
 import TextField from '../ui/TextField';
@@ -7,20 +6,21 @@ import IconButton from '../ui/IconButton';
 import Button from '../ui/Button';
 import Icons from '../icons';
 import Badge from '../ui/Badge';
-import useCreateCardLabel from '../hooks/useCreateCardLabel';
-import useDeleteCardLabel from '../hooks/useDeleteCardLabel';
+import useCreateCardLabel from '../hooks/board/useCreateCardLabel';
+import useDeleteCardLabel from '../hooks/board/useDeleteCardLabel';
+import useCard from '../hooks/board/useCard';
 
 const PopoverAddLabel = forwardRef(
   ({ onOutsideClick, onRequestClose, ...other }, ref) => {
     const colors = ['blue', 'green', 'orange', 'purple', 'yellow'];
-    const { cardSelected } = useSelector(({ board }) => board);
+    const card = useCard();
     const {
       form,
       handleChange,
       handleSubmit,
       handleColorSelect,
       isRequesting,
-    } = useCreateCardLabel('blue', () => onRequestClose());
+    } = useCreateCardLabel('blue', { onSuccess: onRequestClose });
     const { handleDeleteLabel } = useDeleteCardLabel();
 
     return (
@@ -60,7 +60,7 @@ const PopoverAddLabel = forwardRef(
               </li>
             ))}
           </ul>
-          {cardSelected.labels.length > 0 && (
+          {card?.labels.length > 0 && (
             <div className='board-popover-add-label__avaliable-labels'>
               <div className='board-popover-add-label__header-avaliable-labels'>
                 <Icons.Tag />
@@ -69,7 +69,7 @@ const PopoverAddLabel = forwardRef(
                 </h3>
               </div>
               <ul className='board-popover-add-label__grid-avaliable-labels'>
-                {cardSelected.labels.map(({ title, color, _id }) => (
+                {card.labels.map(({ title, color, _id }) => (
                   <Badge color={color} className='relative' key={_id}>
                     {title}
                     <div className='board-popover-add-label__button-delete-avaliable-label'>
