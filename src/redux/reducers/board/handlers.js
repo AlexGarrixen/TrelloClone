@@ -89,3 +89,12 @@ export const updateDescription = (state, action) => {
     description: newDescription,
   };
 };
+
+export const updatePicture = (state, action) => {
+  const { newPicture } = action;
+
+  return {
+    ...state,
+    picture: newPicture,
+  };
+};

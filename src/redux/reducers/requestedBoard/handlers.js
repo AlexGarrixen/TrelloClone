@@ -66,3 +66,18 @@ export const deleteBoard = (state, action) => {
     byId: newsById,
   };
 };
+
+export const updatePictureOfBoard = (state, action) => {
+  const { newPicture, boardId } = action;
+
+  return {
+    ...state,
+    byId: {
+      ...state.byId,
+      [boardId]: {
+        ...state.byId[boardId],
+        picture: newPicture,
+      },
+    },
+  };
+};

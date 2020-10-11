@@ -26,6 +26,8 @@ const boardReducer = (state = initialState, action) => {
       return handlers.updateTitle(state, action);
     case actions.RECEIVE_UPDATED_DESCRIPTION:
       return handlers.updateDescription(state, action);
+    case actions.RECEIVE_UPDATED_PICTURE:
+      return handlers.updatePicture(state, action);
     case actions.SELECT_CARD:
       return handlers.setSelectedCard(state, action);
     case actions.REMOVE_SELECTED_CARD:

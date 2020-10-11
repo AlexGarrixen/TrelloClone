@@ -17,6 +17,8 @@ const requestedBoardReducer = (state = initialState, action) => {
       return handlers.updateDescriptionOfBoard(state, action);
     case actions.RECEIVE_DELETED_BOARD:
       return handlers.deleteBoard(state, action);
+    case actions.RECEIVE_UPDATED_PICTURE_OF_BOARD:
+      return handlers.updatePictureOfBoard(state, action);
     default:
       return state;
   }
