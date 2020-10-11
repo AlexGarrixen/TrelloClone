@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
 import boards from './boards';
 import board from './board';
-import prevRequests from './prevRequests';
+import requestedBoard from './requestedBoard';
+import lists from './lists';
+import cards from './cards';
 
 const reducer = combineReducers({
   boards,
   board,
-  prevRequests,
+  requestedBoard,
+  lists,
+  cards,
 });
 
 export default reducer;

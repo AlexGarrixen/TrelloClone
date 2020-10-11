@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '../../ui/TextField';
-import useUpdateCardTitle from '../../hooks/useUpdateCardTitle';
+import useUpdateCardTitle from '../../hooks/board/useUpdateCardTitle';
 
 const Header = ({ listName }) => {
   const { form, handleChange, handleSubmit } = useUpdateCardTitle();

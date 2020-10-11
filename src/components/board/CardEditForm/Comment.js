@@ -1,13 +1,14 @@
 import React, { useEffect, useMemo, useRef } from 'react';
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import TextFieldEditing from '../TextFieldEditing';
 import PopoverDelete from '../PopoverDelete';
 import usePopper from '../../hooks/usePopper';
-import useUpdateCardComment from '../../hooks/useUpdateCardComment';
-import useDeleteCardComment from '../../hooks/useDeleteCardComment';
+import useUpdateCardComment from '../../hooks/board/useUpdateCardComment';
+import useDeleteCardComment from '../../hooks/board/useDeleteCardComment';
 import useToggle from '../../hooks/useToggle';
 
-const Comment = ({ description, date, _id }) => {
+const Comment = ({ _id, description, date }) => {
   const refDesc = useRef(null);
   const [isModeEdit, handleToggleMode] = useToggle(false);
   const [showPopoverDelete, handleTogglePopover] = useToggle(false);
@@ -17,7 +18,9 @@ const Comment = ({ description, date, _id }) => {
     handleChange,
     handleSubmit,
     isRequesting,
-  } = useUpdateCardComment(_id, description, handleToggleMode(false));
+  } = useUpdateCardComment(_id, description, {
+    onSuccess: handleToggleMode(false),
+  });
 
   const {
     handleDeleteComment,
@@ -93,6 +96,12 @@ const Comment = ({ description, date, _id }) => {
       )}
     </>
   );
+};
+
+Comment.propTypes = {
+  _id: PropTypes.string,
+  description: PropTypes.string,
+  date: PropTypes.string,
 };
 
 export default Comment;

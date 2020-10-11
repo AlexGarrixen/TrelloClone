@@ -6,7 +6,7 @@ import Icons from '../icons';
 import Alert from '../ui/Alert';
 import UploadFile from '../layout/UploadFile';
 import Modal from '../ui/Modal';
-import useBoardRegisterForm from '../hooks/useBoardRegisterForm';
+import useBoardRegisterForm from '../hooks/boards/useBoardRegisterForm';
 
 const BoardRegisterForm = ({ isOpen = false }) => {
   const {

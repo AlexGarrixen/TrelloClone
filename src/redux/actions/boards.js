@@ -1,33 +1,33 @@
 import { getBoards } from '../../services/boards';
 
-export const RECEIVE_BOARDS = 'RECEIVE_BOARDS';
+export const RECEIVE_BOARDS = 'BOARDS:RECEIVE_BOARDS';
 export const receiveBoards = (boards) => ({
   type: RECEIVE_BOARDS,
   boards,
 });
 
-export const RECEIVE_ERROR = 'RECEIVE_ERROR';
+export const RECEIVE_ERROR = 'BOARDS:RECEIVE_ERROR';
 export const receiveError = (message) => ({
   type: RECEIVE_ERROR,
   error: message,
 });
 
-export const SET_SHOW_REGISTRATION_MODAL = 'SET_SHOW_REGISTRATION_MODAL';
+export const SET_SHOW_REGISTRATION_MODAL = 'BOARDS:SET_SHOW_REGISTRATION_MODAL';
 export const setShowRegistrationModal = (value) => ({
   type: SET_SHOW_REGISTRATION_MODAL,
   value,
 });
 
-export const RECEIVE_BOARD_CREATED = 'RECEIVE_BOARD_CREATED';
+export const RECEIVE_BOARD_CREATED = 'BOARDS:RECEIVE_BOARD_CREATED';
 export const receiveBoardCreated = (board) => ({
   type: RECEIVE_BOARD_CREATED,
   board,
 });
 
-export const UPDATE_BOARDS = 'UPDATE_BOARDS';
-export const updateBoards = (newBoards) => ({
-  type: UPDATE_BOARDS,
-  newBoards,
+export const RECEIVE_DELETED_BOARD = 'BOARDS:RECEIVE_DELETED_BOARD';
+export const receiveDeletedBoard = (boardId) => ({
+  type: RECEIVE_DELETED_BOARD,
+  deletedBoardId: boardId,
 });
 
 const shouldRequestBoards = (state) => {

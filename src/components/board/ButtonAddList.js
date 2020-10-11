@@ -2,14 +2,17 @@ import React from 'react';
 import Button from '../ui/Button';
 import Icons from '../icons';
 import TextFieldEditing from './TextFieldEditing';
-import useCreateBoardList from '../hooks/useCreateBoardList';
+import useCreateBoardList from '../hooks/board/useCreateBoardList';
 import useToggle from '../hooks/useToggle';
 
 const ButtonAddList = () => {
   const [showFormRegister, handleToggle] = useToggle(false);
-  const { form, handleChange, handleSubmit, isRequesting } = useCreateBoardList(
-    handleToggle(false)
-  );
+  const {
+    form,
+    handleChange,
+    handleSubmit,
+    isRequesting,
+  } = useCreateBoardList({ onSuccess: handleToggle(false) });
 
   return (
     <div style={{ width: 243 }} className='flex-shrink-0'>

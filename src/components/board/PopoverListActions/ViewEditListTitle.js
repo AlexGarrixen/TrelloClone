@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextFieldEditing from '../TextFieldEditing';
-import useUpdateListTitle from '../../hooks/useUpdateListTitle';
+import useUpdateListTitle from '../../hooks/board/useUpdateListTitle';
 
 const ViewEditListTitle = ({
   listId,
@@ -9,11 +9,12 @@ const ViewEditListTitle = ({
   onRequestCancel,
   onRequestSuccess,
 }) => {
-  const { form, handleChange, handleSubmit, isRequesting } = useUpdateListTitle(
-    listName,
-    listId,
-    onRequestSuccess
-  );
+  const {
+    form,
+    handleChange,
+    handleSubmit,
+    isRequesting,
+  } = useUpdateListTitle(listName, listId, { onSuccess: onRequestSuccess });
 
   return (
     <TextFieldEditing

@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import Button from '../../ui/Button';
-import useDeleteCardAttachment from '../../hooks/useDeleteCardAttachment';
-import useUpdateCardPicture from '../../hooks/useUpdateCardPicture';
+import useDeleteCardAttachment from '../../hooks/board/useDeleteCardAttachment';
+import useUpdateCardPicture from '../../hooks/board/useUpdateCardPicture';
+import useCard from '../../hooks/board/useCard';
 import downloadFile from '../../../utils/downloadFile';
 
 const ButtonAsCover = ({ path, publicId }) => {
@@ -19,19 +20,22 @@ const ButtonAsCover = ({ path, publicId }) => {
   );
 };
 
-const ButtonDelete = ({ publicId }) => {
+const ButtonDelete = ({ publicId, attachmentId }) => {
   const { handleDeleteAttachment, isRequesting } = useDeleteCardAttachment();
 
   return (
-    <Button variant='outlined' onClick={() => handleDeleteAttachment(publicId)}>
+    <Button
+      variant='outlined'
+      onClick={() => handleDeleteAttachment(publicId, attachmentId)}
+    >
       {isRequesting ? 'Deleting...' : 'Delete'}
     </Button>
   );
 };
 
-const Attachment = ({ originalname, path, publicId, date }) => {
-  const { cardSelected } = useSelector(({ board }) => board);
-
+const Attachment = ({ _id, originalname, date, path, publicId }) => {
+  const card = useCard();
+  const attachmentSetAsCover = card?.picture.publicId === publicId;
   const dateFormated = useMemo(() => dayjs(date).format('MMMM D, YYYY'), [
     date,
   ]);
@@ -56,14 +60,32 @@ const Attachment = ({ originalname, path, publicId, date }) => {
           >
             Download
           </Button>
-          {cardSelected.picture.path !== path && (
+          {!attachmentSetAsCover && (
             <ButtonAsCover path={path} publicId={publicId} />
           )}
-          <ButtonDelete publicId={publicId} />
+          <ButtonDelete publicId={publicId} attachmentId={_id} />
         </div>
       </div>
     </article>
   );
+};
+
+ButtonAsCover.propTypes = {
+  path: PropTypes.string,
+  publicId: PropTypes.string,
+};
+
+ButtonDelete.propTypes = {
+  publicId: PropTypes.string,
+  attachmentId: PropTypes.string,
+};
+
+Attachment.propTypes = {
+  _id: PropTypes.string,
+  originalname: PropTypes.string,
+  date: PropTypes.string,
+  path: PropTypes.string,
+  publicId: PropTypes.string,
 };
 
 export default Attachment;

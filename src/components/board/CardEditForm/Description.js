@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import Icons from '../../icons';
 import Button from '../../ui/Button';
 import TextFieldEditing from '../TextFieldEditing';
-import useUpdateCardDescription from '../../hooks/useUpdateCardDescription';
+import useUpdateCardDescription from '../../hooks/board/useUpdateCardDescription';
+import useCard from '../../hooks/board/useCard';
 import useToggle from '../../hooks/useToggle';
 
 const Description = () => {
-  const { cardSelected } = useSelector(({ board }) => board);
+  const card = useCard();
   const [isModeEditDescription, handleToogleMode] = useToggle();
   const refDesc = useRef(null);
 
@@ -16,18 +16,18 @@ const Description = () => {
     handleChange,
     handleSubmit,
     isRequesting,
-  } = useUpdateCardDescription(handleToogleMode(false));
+  } = useUpdateCardDescription(card?.description, {
+    onSuccess: handleToogleMode(false),
+  });
 
   const description = useMemo(
-    () =>
-      cardSelected.description &&
-      cardSelected.description.replace(/\n/g, '<br />'),
-    [cardSelected.description]
+    () => card?.description && card.description.replace(/\n/g, '<br />'),
+    [card?.description]
   );
 
   useEffect(() => {
-    if (refDesc.current) refDesc.current.innerHTML = description;
-  }, [refDesc, cardSelected.description, isModeEditDescription]);
+    if (refDesc.current) refDesc.current.innerHTML = description || 'Write...';
+  }, [refDesc, card?.description, isModeEditDescription]);
 
   return (
     <div className='board-card-edit-form__description'>

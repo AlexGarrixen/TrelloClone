@@ -4,14 +4,16 @@ import Button from '../ui/Button';
 import Icons from '../icons';
 import TextFieldEditing from './TextFieldEditing';
 import useToggle from '../hooks/useToggle';
-import useCreateCard from '../hooks/useCreateCard';
+import useCreateCard from '../hooks/board/useCreateCard';
 
 const ButtonAddTarget = ({ listId }) => {
   const [showRegisterForm, handleToggle] = useToggle(false);
-  const { form, handleChange, handleSubmit, isRequesting } = useCreateCard(
-    listId,
-    handleToggle(false)
-  );
+  const {
+    form,
+    handleChange,
+    handleSubmit,
+    isRequesting,
+  } = useCreateCard(listId, { onSuccess: handleToggle(false) });
 
   return showRegisterForm ? (
     <TextFieldEditing

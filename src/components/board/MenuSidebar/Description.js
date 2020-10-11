@@ -1,20 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 import Icons from '../../icons';
 import TextFieldEditing from '../TextFieldEditing';
 import useToggle from '../../hooks/useToggle';
-import useUpdateBoardDescription from '../../hooks/useUpdateBoardDescription';
+import useUpdateBoardDescription from '../../hooks/board/useUpdateBoardDescription';
+import useBoard from '../../hooks/board/useBoard';
 
 const MenuDescription = () => {
   const [isModeEdit, handleToggleMode] = useToggle(false);
-  const { description } = useSelector(({ board }) => board);
+  const { description } = useBoard();
   const {
     form,
     handleChange,
     handleSubmit,
     isRequesting,
-  } = useUpdateBoardDescription(handleToggleMode(false));
+  } = useUpdateBoardDescription({ onSuccess: handleToggleMode(false) });
 
   return (
     <div className='board-menu-sidebar__description'>

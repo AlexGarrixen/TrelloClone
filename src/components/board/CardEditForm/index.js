@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Picture from './Picture';
 import Header from './Header';
 import Description from './Description';
@@ -8,12 +7,15 @@ import Comments from './Comments';
 import Actions from './Actions';
 import Alert from '../../ui/Alert';
 import UploadFile from '../../layout/UploadFile';
-import useCardAttachmentUpload from '../../hooks/useCardAttachmentUpload';
+import useCardAttachmentUpload from '../../hooks/board/useCardAttachmentUpload';
+import useCard from '../../hooks/board/useCard';
+import useBoard from '../../hooks/board/useBoard';
 import { isArray } from '../../../utils/typeOf';
 
 const CardEditForm = () => {
-  const { cardSelected, cardErrors } = useSelector(({ board }) => board);
-  const { title, listName, picture, attachments, comments } = cardSelected;
+  const { cardErrors } = useBoard();
+  const card = useCard();
+
   const {
     handleUploadAttachment,
     isUploading,
@@ -30,7 +32,7 @@ const CardEditForm = () => {
           ))}
         </Alert>
       )}
-      <Picture picture={picture?.path || ''} />
+      <Picture picture={card?.picture.path || ''} />
       {isUploading && (
         <UploadFile
           className='mt-4'
@@ -38,14 +40,14 @@ const CardEditForm = () => {
           percentage={progress}
         />
       )}
-      <Header title={title} listName={listName} />
+      <Header listName={card?.listName || ''} />
       <div className='board-card-edit-form__body'>
         <div className='board-card-edit-form__wrapper-description-and-comments'>
           <Description />
-          {isArray(attachments) && attachments.length > 0 && (
-            <Attachments attachments={attachments} />
+          {isArray(card?.attachments) && (
+            <Attachments attachments={card.attachments} />
           )}
-          <Comments comments={comments} />
+          {isArray(card?.comments) && <Comments comments={card.comments} />}
         </div>
         <Actions onRequestUploadFile={handleUploadAttachment} />
       </div>

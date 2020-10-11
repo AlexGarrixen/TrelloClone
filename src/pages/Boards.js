@@ -1,15 +1,17 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Container from '../components/layout/Container';
 import ButtonAdd from '../components/boards/ButtonAdd';
 import BoardsGrid from '../components/boards/BoardsGrid';
 import BoardRegisterForm from '../components/boards/BoardRegisterForm';
-import { setShowRegistrationModal } from '../redux/actions/boards';
-import useFetchBoards from '../components/hooks/useFetchBoards';
+import useFetchBoards from '../components/hooks/boards/useFetchBoards';
+import useRegistrationForm from '../components/hooks/boards/useRegistrationForm';
+import useBoards from '../components/hooks/boards/useBoards';
+import SkeletonBoards from '../components/layout/SkeletonBoards';
+import Alert from '../components/ui/Alert';
 
 const Boards = () => {
-  const dispatch = useDispatch();
-  const { registrationModalOpen } = useSelector(({ boards }) => boards);
+  const { isVisible, handleVisibility } = useRegistrationForm();
+  const { isFetching, error, boards } = useBoards();
 
   useFetchBoards();
 
@@ -18,11 +20,17 @@ const Boards = () => {
       <Container>
         <div className='boards-actions-header'>
           <h3 className='boards-actions-header__title'>All Boards</h3>
-          <ButtonAdd onClick={() => dispatch(setShowRegistrationModal(true))} />
+          <ButtonAdd onClick={handleVisibility(true)} />
         </div>
-        <BoardsGrid />
+        {error ? (
+          <Alert severity='error'>{error}</Alert>
+        ) : isFetching ? (
+          <SkeletonBoards count={4} />
+        ) : (
+          <BoardsGrid boards={boards} />
+        )}
       </Container>
-      <BoardRegisterForm isOpen={registrationModalOpen} />
+      <BoardRegisterForm isOpen={isVisible} />
     </section>
   );
 };
