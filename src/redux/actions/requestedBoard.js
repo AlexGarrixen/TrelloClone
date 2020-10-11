@@ -33,3 +33,11 @@ export const receiveDeletedBoard = (boardId) => ({
   type: RECEIVE_DELETED_BOARD,
   boardId,
 });
+
+export const RECEIVE_UPDATED_PICTURE_OF_BOARD =
+  'REQUESTED_BOARD:RECEIVE_UPDATED_PICTURE_OF_BOARD';
+export const receiveUpdatedPictureOfBoard = (boardId, newPicture) => ({
+  type: RECEIVE_UPDATED_PICTURE_OF_BOARD,
+  newPicture,
+  boardId,
+});

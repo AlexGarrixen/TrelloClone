@@ -84,6 +84,12 @@ export const receiveUpdatedDescription = (newDescription) => ({
   newDescription,
 });
 
+export const RECEIVE_UPDATED_PICTURE = 'BOARD:RECEIVE_UPDATED_PICTURE';
+export const receiveUpdatedPicture = (newPicture) => ({
+  type: RECEIVE_UPDATED_PICTURE,
+  newPicture,
+});
+
 export const requestBoard = (boardId, onSuccessRequest) => async (dispatch) => {
   try {
     const [board] = await getBoards(boardId);

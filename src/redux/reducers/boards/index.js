@@ -17,6 +17,8 @@ const boardsReducer = (state = initialState, action) => {
       return handlers.setVisibilityRegistrationForm(state, action);
     case actions.RECEIVE_BOARD_CREATED:
       return handlers.addCreatedBoard(state, action);
+    case actions.RECEIVE_UPDATED_PICTURE_OF_BOARD:
+      return handlers.updatePictureOfBoard(state, action);
     case actions.RECEIVE_DELETED_BOARD:
       return handlers.deleteBoard(state, action);
     case actions.RECEIVE_ERROR:

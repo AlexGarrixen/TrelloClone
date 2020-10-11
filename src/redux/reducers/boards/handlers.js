@@ -46,3 +46,16 @@ export const setError = (state, action) => {
     error,
   };
 };
+
+export const updatePictureOfBoard = (state, action) => {
+  const { boardId, newPicture } = action;
+  const newData = state.data.map((board) => {
+    if (board._id === boardId) board.picture = newPicture;
+    return board;
+  });
+
+  return {
+    ...state,
+    data: newData,
+  };
+};

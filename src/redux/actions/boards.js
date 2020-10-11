@@ -30,6 +30,14 @@ export const receiveDeletedBoard = (boardId) => ({
   deletedBoardId: boardId,
 });
 
+export const RECEIVE_UPDATED_PICTURE_OF_BOARD =
+  'BOARDS:RECEIVE_UPDATED_PICTURE_OF_BOARD';
+export const receiveUpdatedPictureOfBoard = (boardId, newPicture) => ({
+  type: RECEIVE_UPDATED_PICTURE_OF_BOARD,
+  boardId,
+  newPicture,
+});
+
 const shouldRequestBoards = (state) => {
   const {
     boards: { fetched },

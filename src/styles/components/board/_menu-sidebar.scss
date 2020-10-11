@@ -6,7 +6,7 @@
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     'menu-header'
-    'menu-description'
+    'menu-body'
     'menu-footer';
   position: fixed;
   margin-top: 70px;
@@ -54,10 +54,25 @@
     }
   }
 
-  &__description {
-    grid-area: menu-description;
+  &__body {
     overflow-y: auto;
     overflow-x: hidden;
+  }
+
+  &__picture-wrapper {
+    margin-bottom: 25px;
+  }
+
+  &__picture-actions {
+    margin-top: 20px;
+  }
+
+  &__picture {
+    border-radius: theme('borderRadius.lg');
+    background-color: theme('colors.gray.20');
+    height: 130px;
+    background-size: cover;
+    background-position: center;
   }
 
   &__description-header {
